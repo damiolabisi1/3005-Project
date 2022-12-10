@@ -30,19 +30,19 @@ router.post(["/login"], (request,response) => {
     let username = request.body.Username;
     let password = request.body.Password;
 
-    config.query('SELECT * from Books', (err,res)=>{
+    config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username+"\'", (err,res)=>{
         console.log(err,res)
         if(err) throw err;
 
         if(res){
-            if(data.password == password){
+            if(res.rows[1].u_password == password){
                 request.session.login = true;
-                request.session.username = data.username;
-                request.session.userid = data._id;
-                response.send(data._id);
+                request.session.username = username;
+                request.session.userid = res.rows[1].u_id ;
+                response.send(res.rows[1].u_id);
                 return;
             }
-            if(data.password != password){
+            if(res.rows[1].u_password != password){
                 response.status(401).send("Invalid password");
             }
         }

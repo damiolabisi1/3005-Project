@@ -38,11 +38,11 @@ config.connect((err)=>{
     }
     console.log("Database connected")
 })
+var username = 'owner'
+// config.query('SELE", (err,res)=>{
+//     console.log(err,res)
 
-config.query('SELECT * from Books', (err,res)=>{
-    console.log(err,res)
-
-})
+// })
 
 app.listen(PORT, ()=> {
     console.log(`Server listening on http://localhost:${PORT}`)
