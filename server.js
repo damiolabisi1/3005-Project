@@ -3,13 +3,14 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 8000;
-
-const libraryRouter = require("./library-router.js");
+let router = express.Router();
+const loginRouter = require("./login-router.js");
 const searchRouter = require("./search-router.js");
 const signupRouter = require("./signup-router.js");
 
 let db;
 app.locals.db = db;
+app.use(express.json()); // body-parser middleware
 
 router.get('/', (req,res)=> {
     res.format({
@@ -40,7 +41,7 @@ app.use((req,_,next)=> {
 
 //Mount the fridge router to the path /fridges
 //All requests starting with /fridges will be forwarded to this router
-app.use("/home", libraryRouter);
+app.use("/login", libraryRouter);
 app.use("/search",searchRouter);
 app.post("/signup", signupRouter);
 
