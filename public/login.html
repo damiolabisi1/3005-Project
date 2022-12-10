@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/login.css">
+    <link rel="stylesheet" href="css/login.css">
     <script>
     </script>
-    <title>Admin Login</title>
+    <title>Login</title>
   </head>
 </html>
 <body>
   <div class="header"> 
     <h1>Login</h1>
-    <a href="/views/home.html">Home</a>
-    <a href="/views/signup.html">Register</a>
-    <a href="/views/login.html">Login</a>
+    <a href="home.html">Home</a>
+    <a href="signup.html">Register</a>
+    <a href="login.html">Login</a>
     <!-- <a href="/views/adminlogin.html">Admin</a> -->
   </div>
   <hr><br><br>
@@ -28,8 +28,11 @@
     <input id="Password" type="textbox" size="20"> 
 
     <!-- ADD METHOD HERE -->
-    <button id="AdminLogin" type="button" onclick="">Admin Login</button>
+    <form action="search.html">
+    <button id="Login" type="submit" formaction="search.html">Login</button>
     <p class="Err" id="Err"></p>
     <p class="UserErr" id="UserErr"></p>
+    <p>Don't have an account? </p><a href="signup.html">Sign up</a>
+    <p><a href="adminlogin.html">Admin</a></p>
   </div>
 </main>
