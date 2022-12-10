@@ -32,6 +32,11 @@ WHERE U_name='owner'
     FROM books
     WHERE B_name='The life of the Apple guru'
     --by genre
+    SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published
+    FROM genre
+    NATURAL JOIN book_genre
+    NATURAL JOIN books
+    WHERE G_name = 'fantacy';
 
 --all tables
 SELECT *
