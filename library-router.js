@@ -35,10 +35,12 @@ router.post(["/login"], (request,response) => {
         if(err) throw err;
 
         if(res){
+            console.log(res);
             if(res.rows[1].u_password == password){
                 request.session.login = true;
                 request.session.username = username;
                 request.session.userid = res.rows[1].u_id ;
+                console.log(res.rows[1].u_id );
                 response.send(res.rows[1].u_id);
                 return;
             }
