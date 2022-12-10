@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS Users(
 	Billing_address INT,
 	address INT,
 	U_password VARCHAR(40),
+    Admin_privilege BOOLEAN,
 	FOREIGN KEY (Billing_address)
 		REFERENCES Address (A_ID),
 	FOREIGN KEY (address)
