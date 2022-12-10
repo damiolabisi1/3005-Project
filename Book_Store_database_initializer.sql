@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS Orders(
 		REFERENCES Users (U_ID)
 );
 
-CREATE TABLE IF NOT EXISTS Phone_number(
+CREATE TABLE IF NOT EXISTS Phone_numbers(
 	Phone_numbers INT PRIMARY KEY,
 	Publisher_number INT,
 	FOREIGN KEY (Publisher_number)
@@ -74,12 +74,12 @@ CREATE TABLE IF NOT EXISTS Books_in_order(
 
 CREATE TABLE IF NOT EXISTS CART (
 	U_ID INT,
-	Order_number INT,
+	ISBN INT,
 	Quantity INT,
 	FOREIGN KEY (U_ID)
 		REFERENCES Users (U_ID),
-	FOREIGN KEY (Order_number)
-		REFERENCES Orders (Order_number)
+	FOREIGN KEY (ISBN)
+		REFERENCES books (ISBN)
 );
 
 CREATE TABLE IF NOT EXISTS Genre(
