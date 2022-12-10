@@ -32,9 +32,8 @@ function login(){
             
         }
         };
-        req.open("POST", "/login", true);
+        req.open("POST", "/home/login", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
     }
 
-    
