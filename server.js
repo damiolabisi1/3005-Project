@@ -2,7 +2,7 @@ const config = require('./config.js');
 
 const PORT = process.env.PORT || 8000;
 
-const fridgesRouter = require("./library-router.js");
+const libraryRouter = require("./library-router.js");
 // const searchRouter = require("./search-router.js");
 
 let db;
