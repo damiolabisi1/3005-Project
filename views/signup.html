@@ -11,16 +11,24 @@
   </head>
 </html>
 <body>
-    <h1>Register</h1>
+  <div class="header">
+    <h1>Sign up</h1>
     <!-- include ../partials/header-->
+  </div>
   <hr><br><br>
 </body>
 <main>   
   <div class="signup"><b>Username: </b>
     <input id="username" type="textbox" size="20"><span class="regErr" id="regErr"></span><br><b>Password: </b>
-    <input id="password" type="textbox" size="20"><span class="passErr" id="passErr"></span><br>
+    <input id="password" type="textbox" size="20"><span class="passErr" id="passErr"></span><br><b>Confirm Password: </b>
+    <input id="cpassword" type="textbox" size="20"><span class="passErr" id="passErr"></span><br>
+  </div>
+  <div class="add"><b>Address: </b>
+    <input id="address" type="textbox" size="20"><span class="addErr" id="addErr"></span><br>
+    <b>Billing Address: </b>
+    <input id="baddress" type="textbox" size="20"><span class="baddress" id="baddress"></span><br>
        <!-- ADD METHOD HERE -->
-    <button id="signup" type="button" onclick="">signup</button>
+    <button id="signup" type="button" onclick="">Sign up</button>
     <p>Already have an account? </p><a href="/views/login.html">Login</a>
   </div>
 </main>
