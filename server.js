@@ -1,15 +1,18 @@
 const config = require('./config.js');
-
+const express = require('express');
+const app = express();
+const path = require('path');
 const PORT = process.env.PORT || 8000;
 
 const libraryRouter = require("./library-router.js");
-// const searchRouter = require("./search-router.js");
+const searchRouter = require("./search-router.js");
+const signupRouter = require("./signup-router.js");
 
 let db;
 app.locals.db = db;
 
 // MIDDLEWARE
-app.use(express.static(""));
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use((req,_,next)=> {
@@ -23,9 +26,9 @@ app.use((req,_,next)=> {
 
 //Mount the fridge router to the path /fridges
 //All requests starting with /fridges will be forwarded to this router
-app.use("/fridges", fridgesRouter);
+app.use("/home", libraryRouter);
 app.use("/search",searchRouter);
-app.post("/items", addItem2Collect);
+app.post("/signup", signupRouter);
 
 
 config.connect((err)=>{
@@ -41,6 +44,9 @@ config.query('SELECT * from Books', (err,res)=>{
 
 })
 
+app.listen(PORT, ()=> {
+    console.log(`Server listening on http://localhost:${PORT}`)
+    });
 
 process.on('SIGINT', function() {
     config.end(function () {

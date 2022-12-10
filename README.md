@@ -5,4 +5,3 @@ run:
     npm install nodejs
     npm install pg
     npm install path
-    
