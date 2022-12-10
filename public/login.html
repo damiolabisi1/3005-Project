@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
-    <script>
+    <script src="func.js">
     </script>
     <title>Login</title>
   </head>
@@ -28,8 +28,9 @@
     <input id="Password" type="textbox" size="20"> 
 
     <!-- ADD METHOD HERE -->
-    <form action="search.html">
-    <button id="Login" type="submit" formaction="search.html">Login</button>
+    <button id="Login" type="button" onclick="login()">Sign up</button>
+    <!-- <form action="search.html">
+    <button id="Login" type="submit" formaction="search.html">Login</button> -->
     <p class="Err" id="Err"></p>
     <p class="UserErr" id="UserErr"></p>
     <p>Don't have an account? </p><a href="signup.html">Sign up</a>
