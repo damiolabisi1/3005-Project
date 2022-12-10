@@ -4,7 +4,7 @@ const client = new Client({
     host: "finalproject.crhco7daqzun.ca-central-1.rds.amazonaws.com",
     port: "5432",
     user: "postgres",
-    password: "Braxtonmal8",
+    password: "comp3005",
     database: "postgres",
 
 });
