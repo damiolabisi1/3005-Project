@@ -6,7 +6,7 @@ let router = express.Router();
 
 app.use(express.json()); // body-parser middleware
 
-router.get('/home', (req,res)=> {
+router.get('/', (req,res)=> {
     res.format({
 		'text/html': ()=> {
 			res.set('Content-Type', 'text/html');

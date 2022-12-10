@@ -23,9 +23,9 @@ app.use((req,_,next)=> {
 
 //Mount the fridge router to the path /fridges
 //All requests starting with /fridges will be forwarded to this router
-app.use("/fridges", fridgesRouter);
+app.use("/home", fridgesRouter);
 app.use("/search",searchRouter);
-app.post("/items", addItem2Collect);
+app.post("/signup", signupRouter);
 
 
 config.connect((err)=>{
@@ -41,6 +41,9 @@ config.query('SELECT * from Books', (err,res)=>{
 
 })
 
+app.listen(PORT, ()=> {
+    console.log(`Server listening on http://localhost:${PORT}`)
+    });
 
 process.on('SIGINT', function() {
     config.end(function () {
