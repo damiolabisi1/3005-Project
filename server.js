@@ -12,7 +12,7 @@ let db;
 app.locals.db = db;
 app.use(express.json()); // body-parser middleware
 
-router.get('/', (req,res)=> {
+app.get(["/","/home"], (req,res)=> {
     res.format({
 		'text/html': ()=> {
 			res.set('Content-Type', 'text/html');
@@ -41,7 +41,7 @@ app.use((req,_,next)=> {
 
 //Mount the fridge router to the path /fridges
 //All requests starting with /fridges will be forwarded to this router
-app.use("/login", libraryRouter);
+app.use("/login", loginRouter);
 app.use("/search",searchRouter);
 app.post("/signup", signupRouter);
 
