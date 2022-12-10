@@ -11,6 +11,20 @@ const signupRouter = require("./signup-router.js");
 let db;
 app.locals.db = db;
 
+router.get('/', (req,res)=> {
+    res.format({
+		'text/html': ()=> {
+			res.set('Content-Type', 'text/html');
+			res.sendFile(path.join(__dirname,'public','home.html'),(err) =>{
+				if(err) res.status(500).send('500 Server error');
+			});
+		},
+        'default' : ()=> {
+            res.status(406).send('Not acceptable');
+        }
+    })
+});
+
 // MIDDLEWARE
 app.use(express.static("public"));
 app.use(express.json());
