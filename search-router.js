@@ -77,7 +77,7 @@ router.post('/', (request,response) => {
 
 });
 
-router.post( "/adminSearch", (request,response) => {
+router.post( "/admin", (request,response) => {
     let search = request.body.search;
     let type = request.body.type.toLowerCase();
         //by ISBN

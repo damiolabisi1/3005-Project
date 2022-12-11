@@ -49,4 +49,32 @@ router.post('/', (request,response) => {
 
 });
 
+router.post('/admin', (request,response) => {
+    console.log(request.body)
+
+    let username = request.body.Username;
+    let password = request.body.Password;
+
+    config.query('SELECT U_id,U_name,U_password,admin_privileges From users Where U_name=\''+username+"\'", (err,res)=>{
+        console.log(err,res)
+        if(err) throw err;
+
+        if(res.rows.length != 0){
+            console.log(res);
+            if(res.rows[0].u_password == password && admin_privileges == 'true'){
+                response.send(res.rows[0].u_id.toString());
+                return;
+            }
+            if(res.rows[0].u_password != password){
+                response.status(401).send("Invalid password");
+            }
+        }
+        else{
+            response.status(401).send("Invalid username");
+            return;
+        }
+    });
+
+});
+
 module.exports = router;
