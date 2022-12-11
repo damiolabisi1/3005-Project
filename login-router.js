@@ -68,13 +68,12 @@ router.post('/admin', (request,response) => {
             if(res.rows[0].u_password == password && admin_privileges == 'true'){
                 config.query("SELECT * FROM books ", (error,result)=>{
                     if (error)throw error;
-                    let books = JSON.stringify(res.rows);
-                    let u_id = res.rows[0].u_id.toString();
-
-
-                    response.send(u_id,books);
-                });
-                return;
+                    let books = result.rows;
+                    books.u_id =res.rows[0].u_id.toString();
+                    JSON.stringify(books);
+                    console.log(books);
+                    response.status(200).send(books);
+                    return;});
             }
             if(res.rows[0].u_password != password){
                 response.status(401).send("Invalid password");
