@@ -90,6 +90,13 @@ FROM genre;
 SELECT *
 FROM book_genre;
 
+//the revenue ofn the book store
+config.query("SELECT SUM(books.price*books_in_order.quantity) FROM books_in_order NATURAL JOIN books", (err,res)=>{});
+
+//the prive of each order
+config.query("SELECT SUM(books.price*books_in_order.quantity) FROM orders NATURAL JOIN books_in_order NATURAL JOIN books GROUP BY orders.order_number", (err,res)=>{});
+
+
 
 
 
