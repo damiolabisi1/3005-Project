@@ -38,6 +38,20 @@ WHERE U_name='owner'
     NATURAL JOIN books
     WHERE G_name = 'fantacy';
 
+--Getting the content of a users cart
+SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published
+FROM users
+NATURAL JOIN cart
+NATURAL JOIN books
+WHERE users.U_ID='2'
+
+--Getting the orders a user has made
+    --getting order infor
+    SELECT order_number,tracking_number,shipping_address
+    FROM orders
+    WHERE U_ID='2'
+    --getting the books that have been ordered and their quanity
+
 --all tables
 SELECT *
 FROM users;
