@@ -128,7 +128,9 @@ GROUP BY orders.order_number
         INSERT INTO books(B_name,Author,publisher_number,number_of_pages,price,number_in_stock,publisher_sale_percentage,date_published)
         VALUES
 	        ()
-
+    
+    --add to existing book
+    Update 
 
 
 
