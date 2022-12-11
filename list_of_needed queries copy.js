@@ -1,25 +1,17 @@
--- Quary for getting a users user name and password
-SELECT U_id,U_name,U_password
-FROM users
-WHERE U_name='owner'
+config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username+"\'", (err,res)=>{});
 
---Signup: adds a user and their info to the data base
-    --users addresses
-    INSERT INTO address(address)
-    VALUES
-	('mozaihas house');
-    --users info
-    INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege)
-    VALUES ('mozaiha',(SELECT a_id
-            	FROM address
-				WHERE address='mozaihas billing address'  
-            ),(SELECT a_id
-            	FROM address
-				WHERE address='mozaihas shipping address'  
-            ),'mo',FALSE);
+//Quary for getting a users user name and password
+config.query("SELECT U_id,U_name,U_password FROM users WHERE U_name=\'"+username+"\'", (err,res)=>{});
+
+//Signup: adds a user and their info to the data base
+    //users addresses
+    config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,res)=>{});
+
+    //users info
+    config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+username+\"',(SELECT a_id FROM address WHERE address=\'"+users_billing_address+"\'),(SELECT a_id FROM address WHERE address=\'"+user_address+"\'),\'"+user_password+"\',FALSE)", (err,res)=>{});
     
---Searching for books
-    --by ISBN
+//Searching for books
+    //by ISBN
     SELECT *
     FROM books
     WHERE ISBN=1
