@@ -46,13 +46,13 @@ config.query("SELECT U_id,U_name,U_password FROM users WHERE U_name=\'"+username
     config.query("SELECT * FROM books WHERE ISBN="+search_text, (err,res)=>{});
 
     //by author
-    config.query("SELECT * FROM books WHERE author=\'"+search_text+"\'", (err,res)=>{});
+    config.query("SELECT * FROM books WHERE position(\'"+search_text+"\' in books.author)>0", (err,res)=>{});
 
     //by name
-    config.query("SELECT * FROM books WHERE B_name=\'"+search_text+"\'", (err,res)=>{});
+    config.query("SELECT * FROM books WHERE position(\'"+search_text+"\' in books.b_name)>0", (err,res)=>{});
 
     //by genre
-    config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published FROM genre NATURAL JOIN book_genre NATURAL JOIN books WHERE G_name = \'"+search_text+"\'", (err,res)=>{});
+    config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published FROM genre NATURAL JOIN book_genre NATURAL JOIN books WHERE position(\'"+search_text+"\' in genre.g_name)>0", (err,res)=>{});
 
 //Getting the content of a users cart
 config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published FROM users NATURAL JOIN cart NATURAL JOIN books WHERE users.U_ID=\'"+user_id+"\'", (err,res)=>{});
@@ -103,7 +103,7 @@ config.query("SELECT SUM(books.price*books_in_order.quantity) FROM orders NATURA
         config.query("INSERT INTO books(B_name,Author,publisher_number,number_of_pages,price,number_in_stock,publisher_sale_percentage,date_published) VALUES (data goes in here)", (err,res)=>{});
 
     //add to existing book
-    
+
 
 
 
