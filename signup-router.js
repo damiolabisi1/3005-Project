@@ -24,9 +24,9 @@ router.post('/', (request,response) => {
     else if(request.body.password == ""){
         response.status(401).send("Not valid");
     }
-    else if(password != confirmp){
-        response.status(401).send("Wrong password");
-    }
+    // else if(password != confirmp){
+    //     response.status(401).send("Wrong password");
+    // }
     
     else{
         config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username+"\'", (err,res)=>{

@@ -61,7 +61,12 @@ function register(){
 	if (this.readyState==4 && this.status==200) {
         alert("Succesfully Registered. Please Login\n");
         let data = JSON.parse(this.responseText);
-		window.location = "/login";
+		window.location = "/login.html";
+
+        // console.log(password);
+        // if(password != confirm_password){
+        //     alert("Passwords don't match");
+        // }
 	}
 	else if(this.readyState==4 && this.status==401) {
         if (this.responseText == "Username taken"){
@@ -72,9 +77,6 @@ function register(){
         }
         else if(this.responseText == "Not valid"){
             alert("Enter a valid password");
-        }
-        else if(this.responseText == "Wrong password"){
-            alert("Passwords don't match");
         }
     }
     };
