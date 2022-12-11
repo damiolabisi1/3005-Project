@@ -184,3 +184,35 @@ function adminlogin(){
 
 // }
 
+function admin_search(){
+
+    let bookname = document.getElementById("book name").value;
+	let author = document.getElementById("book author").value;
+    const body={bookname,author};
+
+    req.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
+            let data = JSON.parse(this.responseText);
+
+            admin_book_loader(data);
+        }
+    
+        else if(this.readyState==4 && this.status==401) {
+
+            if (this.responseText == "no book"){
+                alert("sadly no books with this criteria")
+            }
+            
+        }
+        };
+        req.open("POST", "/adminSearch", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(Body));
+
+}
+
+function admin_book_loader(data){
+    document.getElementById("book search").innerHTML="";
+}
+
