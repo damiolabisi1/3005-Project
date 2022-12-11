@@ -97,27 +97,11 @@ function search(){
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
             let list = document.getElementById("result");
-            // let newlist = document.createElement('ul')
-            // list.innerHTML = ""
             for(let i = 0;i<data.length;i++){
-                for( let key in data[i]){
-                    if(data[i].hasOwnProperty(key)) {
-                        let newlist = document.createElement('ul');
-                        // console.log(data[key]);
-                        // list.appendChild(data[key]);
-                        // console.log(data[key]);
-                        // list.appendChild(newlist);
-                        newlist.value = '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
-                        '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
-                        '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
-                        '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
-                        list.appendChild(newlist);
-                        // list.innerHTML ='<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
-                        // '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
-                        // '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
-                        // '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
-                    }
-                }
+                list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
+                '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
+                '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
+                '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
             }
         }
         else if(this.readyState==4 && this.status==401) {
