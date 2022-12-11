@@ -22,11 +22,8 @@ app.use(express.json()); // body-parser middleware
 // });
 
 router.post(['/'], (request,response) => {
-<<<<<<< HEAD
-=======
     request = request.toString()
     console.log(request)
->>>>>>> 2f16bf3811c9859a1d5c462df34afc195f053721
     if(request.session.login){
         response.status(201).send("Logged in");
         return;

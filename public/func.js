@@ -9,7 +9,7 @@ function login(){
         if (this.readyState==4 && this.status==200) {
             alert("Succesfully Logged-In.\n Redirecting to home page.\n");
             let data = JSON.parse(this.responseText);
-                window.location = "/users/"+data;
+                window.location = "/users";
         }
         else if(this.readyState==4 && this.status==401) {
             if (this.responseText == "Invalid password"){
