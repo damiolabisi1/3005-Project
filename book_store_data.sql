@@ -1,13 +1,13 @@
 INSERT INTO address(address)
 VALUES
-	('The stores address'),
-	('The owners house'),
+	('the stores address'),
+	('the owners house'),
 	('edis house'),
 	('bobs house'),
 	('fire headquarters'),
 	('carleton university'),
 	('big pick headquarters'),
-	('bobs house');
+	('trntons house');
 
 INSERT INTO Users(U_name,billing_address,address,U_password,Admin_privilege)
 VALUES
@@ -17,23 +17,26 @@ VALUES
 	
 INSERT INTO publishers(P_name,address,email_address,bank_account)
 VALUES
-	('Fire publishing',4,'fire@gmail.com',0000),
-	('Carleton Bird publishing',5,'carletonbird@gmail.com',0001),
-	('Big Pick publishing',6,'bigpick@gmail.com',0002),
-	('Apple inc',7,'applelovesmonery@apple.com',0003);
+	('fire publishing',4,'fire@gmail.com',0000),
+	('carleton Bird publishing',5,'carletonbird@gmail.com',0001),
+	('big Pick publishing',6,'bigpick@gmail.com',0002),
+	('apple inc',7,'applelovesmonery@apple.com',0003);
 	
 	
 INSERT INTO books(B_name,Author,publisher_number,number_of_pages,price,number_in_stock,publisher_sale_percentage,date_published)
 VALUES
-	('Harry Potter: The light of the moon','Harry Potter',1,50,59,23,3,'2020-01-01'),
-	('Vampire hunters','Pete Johnson',1,41,20,3,1,'2012-12-03'),
-	('The life of the Apple guru','Jack Black',4,5,799,19,99,'2017-11-06');
+	('harry Potter: the light of the moon','harry potter',1,50,59,23,3,'2020-01-01'),
+	('vampire hunters','Pete Johnson',1,41,20,3,1,'2012-12-03'),
+	('the life of the apple guru','jack black',4,5,799,19,99,'2017-11-06'),
+	('harry potter: the dark of the crack','harry potter',1,55,78,27,4,'2020-01-01'),
+	('vampire fighters','pete johnson',1,41,20,3,1,'2012-12-03'),
+	('the life of the apple guru 1.5','jack black',4,5,999,19,99,'2017-11-06');
 	
-INSERT INTO orders(shipping_address,billing_address)
+INSERT INTO orders(u_id,shipping_address,billing_address)
 VALUES
-	(2,3),
-	(8,6),
-	(8,6);
+	(2,2,3),
+	(3,8,6),
+	(3,8,6);
 	
 
 INSERT INTO phone_numbers(phone_numbers,publisher_number)
