@@ -4,11 +4,19 @@ config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username
 config.query("SELECT U_id,U_name,U_password FROM users WHERE U_name=\'"+username+"\'", (err,res)=>{});
 
 //Signup: adds a user and their info to the data base
-    //users addresses
-    config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,res)=>{});
+    //if user address already exists
+        //gets aid of the user
+        config.query("SELECT A_ID FROM address WHERE address=\'"+user_address+"\'", (err,res)=>{});
 
-    //users info
-    config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+username+\"',(SELECT a_id FROM address WHERE address=\'"+users_billing_address+"\'),(SELECT a_id FROM address WHERE address=\'"+user_address+"\'),\'"+user_password+"\',FALSE)", (err,res)=>{});
+        //inserts the user info
+        config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+user_name+"\',\'"+address_id+"\',\'"+address_id+"\',\'"+user_password+"\',FALSE)", (err,res)=>{});
+
+    //if user address doesnt exist
+        //users addresses
+        config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,res)=>{});
+
+        //users info
+        config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+username+\"',(SELECT a_id FROM address WHERE address=\'"+users_billing_address+"\'),(SELECT a_id FROM address WHERE address=\'"+user_address+"\'),\'"+user_password+"\',FALSE)", (err,res)=>{});
     
 //Searching for books
     //by ISBN

@@ -4,19 +4,30 @@ FROM users
 WHERE U_name='owner'
 
 --Signup: adds a user and their info to the data base
-    --users addresses
-    INSERT INTO address(address)
-    VALUES
-	('mozaihas house');
-    --users info
-    INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege)
-    VALUES ('mozaiha',(SELECT a_id
-            	FROM address
-				WHERE address='mozaihas billing address'  
-            ),(SELECT a_id
-            	FROM address
-				WHERE address='mozaihas shipping address'  
-            ),'mo',FALSE);
+    --if user address already exists
+        --gets aid of the user
+        SELECT A_ID
+        FROM address
+        WHERE address='edis house'
+
+        --inserts the user info
+        INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege)
+        VALUES ('mozaiha','2','2','mo',FALSE);
+
+    --if user address doesnt exist
+        --users addresses
+        INSERT INTO address(address)
+        VALUES
+        ('mozaihas house');
+        --users info
+        INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege)
+        VALUES ('mozaiha',(SELECT a_id
+                    FROM address
+                    WHERE address='mozaihas billing address'  
+                ),(SELECT a_id
+                    FROM address
+                    WHERE address='mozaihas shipping address'  
+                ),'mo',FALSE);
     
 --Searching for books
     --by ISBN
