@@ -207,7 +207,7 @@ function admin_search(){
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
             admin_book_loader(data);
-            alert("niggers");
+            alert("tests");
         }
     
         else if(this.readyState==4 && this.status==401) {
