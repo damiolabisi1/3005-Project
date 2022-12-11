@@ -87,9 +87,9 @@ function register(){
 
 function search(){
     let search = document.getElementById("search").value;
-    let searchtypeb= document.querySelector('input[name="radio"]:checked').id;
+    let searchtype= document.querySelector('input[name="radio"]:checked').id;
 
-    const Body = {search,searchtypeb}
+    const Body = {search,searchtype}
 	let req = new XMLHttpRequest();
 
     req.onreadystatechange = function () {
