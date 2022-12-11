@@ -64,36 +64,26 @@ config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number
     //getting the books that have been ordered and their quanity
     config.query(" SELECT books.b_name,books_in_order.quantity FROM orders NATURAL JOIN books_in_order NATURAL JOIN books WHERE U_ID=\'"+user_id+"\'", (err,res)=>{});
 
---all tables
-SELECT *
-FROM users;
+//all tables
+config.query("SELECT * FROM users;", (err,res)=>{});
 
-SELECT *
-FROM publishers;
+config.query("SELECT * FROM publishers;", (err,res)=>{});
 
-SELECT *
-FROM orders;
+config.query("SELECT * FROM orders;", (err,res)=>{});
 
-SELECT *
-FROM books;
+config.query("SELECT * FROM books;", (err,res)=>{});
 
-SELECT *
-FROM phone_numbers;
+config.query("SELECT * FROM phone_numbers;", (err,res)=>{});
 
-SELECT *
-FROM cart;
+config.query("SELECT * FROM cart;", (err,res)=>{});
 
-SELECT *
-FROM books_in_order;
+config.query("SELECT * FROM books_in_order;", (err,res)=>{});
 
-SELECT *
-FROM address;
+config.query("SELECT * FROM address;", (err,res)=>{});
 
-SELECT *
-FROM genre;
+config.query("SELECT * FROM genre;", (err,res)=>{});
 
-SELECT *
-FROM book_genre;
+config.query("SELECT * FROM book_genre;", (err,res)=>{});
 
 //the revenue ofn the book store
 config.query("SELECT SUM(books.price*books_in_order.quantity) FROM books_in_order NATURAL JOIN books", (err,res)=>{});
