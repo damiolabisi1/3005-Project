@@ -31,7 +31,7 @@ router.post(['/'], (request,response) => {
         console.log(err,res)
         if(err) throw err;
 
-        if(res){
+        if(res.rows.length != 0){
             console.log(res);
             if(res.rows[0].u_password == password){
                 response.send(res.rows[0].u_id.toString());
