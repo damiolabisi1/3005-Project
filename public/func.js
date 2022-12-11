@@ -113,6 +113,51 @@ function search(){
         req.send(JSON.stringify(Body));
 }
 
+function adminlogin(){
+    let Username = document.getElementById("Username").value;
+	let Password = document.getElementById("Password").value;
+
+    const Body = {Username,Password}
+	let req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
+            let data = JSON.parse(this.responseText);
+            window.location = "/admin.html";
+            // let show = document.getElementById("login");
+            // show.classList.remove("show");
+            // show.classList.add("hidden");
+            // let hid = document.getElementById("search");
+            // hid.classList.remove("hidden");
+        }
+    
+        else if(this.readyState==4 && this.status==401) {
+            if (this.responseText == "Invalid password"){
+                document.getElementById("Error").innerHTML = "Incorrect Password";
+            }
+            else{
+                document.getElementById("Error").innerHTML = "";
+            }
+            if (this.responseText == "Invalid username"){
+            document.getElementById("AdmimErr").innerHTML = "Incorrect Username";
+            }
+            else{
+                document.getElementById("AdminErr").innerHTML = "";
+            }
+
+            if (this.responseText == "Invalid credentials" && "Invalid credentials pass"){
+                document.getElementById("Error").innerHTML = "Incorrect Password";
+                document.getElementById("AdminErr").innerHTML = "Incorrect Username";
+            }
+            
+        }
+        };
+        req.open("POST", "/adminlogin", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(Body));
+}
+
 // function book_generator(){
     
 //     //get the json with the book info
