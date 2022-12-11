@@ -43,14 +43,13 @@ function login(){
 
 //Handles the register button
 function register(){
-    alert("sign up");
 	let username = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
-    let confirmpassword = document.getElementById("cpassword").value;
+    let confirm_password = document.getElementById("cpassword").value;
     let address = document.getElementById("address").value;
     let billing_address = document.getElementById("baddress").value;
     
-	const Body = {username,password, confirmpassword, address, billing_address}
+	const Body = {username,password, confirm_password, address, billing_address}
 	
 	let req = new XMLHttpRequest();
 	
@@ -78,12 +77,44 @@ function register(){
 }
 
 function search(){
-    alert("hi");
     let search = document.getElementById("search").value;
     let searchtypeb= document.querySelector('input[name="radio"]:checked').id;
 
-    console.log(search);
-    console.log(searchtypeb);
+    // const Body = {Username,Password}
+	// let req = new XMLHttpRequest();
+
+    // req.onreadystatechange = function () {
+    //     if (this.readyState==4 && this.status==200) {
+    //         alert("Succesfully Logged-In.\n Redirecting to home page.\n");
+    //         let data = JSON.parse(this.responseText);
+    //         window.location = "/search";
+            
+    //     }
+    
+    //     else if(this.readyState==4 && this.status==401) {
+    //         if (this.responseText == "Invalid password"){
+    //             document.getElementById("Err").innerHTML = "Incorrect Password";
+    //         }
+    //         else{
+    //             document.getElementById("Err").innerHTML = "";
+    //         }
+    //         if (this.responseText == "Invalid username"){
+    //         document.getElementById("UserErr").innerHTML = "Incorrect Username";
+    //         }
+    //         else{
+    //             document.getElementById("UserErr").innerHTML = "";
+    //         }
+
+    //         if (this.responseText == "Invalid credentials" && "Invalid credentials pass"){
+    //             document.getElementById("Err").innerHTML = "Incorrect Password";
+    //             document.getElementById("UserErr").innerHTML = "Incorrect Username";
+    //         }
+            
+    //     }
+    //     };
+    //     req.open("POST", "/login", true);
+    //     req.setRequestHeader("Content-Type", "application/json");
+    //     req.send(JSON.stringify(Body));
 
     // let req = new XMLHttpRequest();
 	// let params = "/?username=" + search;
