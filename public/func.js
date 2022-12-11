@@ -198,29 +198,99 @@ function admin_search(){
 	let author = document.getElementById("book author").value;
     const body={bookname,author};
 
-    req.onreadystatechange = function () {
-        if (this.readyState==4 && this.status==200) {
-            alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
-            let data = JSON.parse(this.responseText);
+    if (bookname=="" && author=="" ){
+        req.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
+                let data = JSON.parse(this.responseText);
 
-            admin_book_loader(data);
-        }
-    
-        else if(this.readyState==4 && this.status==401) {
-
-            if (this.responseText == "no book"){
-                alert("sadly no books with this criteria")
+                admin_book_loader(data);
             }
-            
-        }
+        
+            else if(this.readyState==4 && this.status==401) {
+
+                if (this.responseText == "no book"){
+                    alert("sadly no books with this criteria")
+                }
+                
+            }
+        };
+        req.open("POST", "/adminget", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(Body));
+    }
+    else if (bookname==""){
+        req.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
+                let data = JSON.parse(this.responseText);
+
+                admin_book_loader(data);
+            }
+        
+            else if(this.readyState==4 && this.status==401) {
+
+                if (this.responseText == "no book"){
+                    alert("sadly no books with this criteria")
+                }
+                
+            }
+        };
+        req.open("POST", "/adminSearch_name", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify({bookname}));
+    }
+    else if (author==""){
+        req.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
+                let data = JSON.parse(this.responseText);
+
+                admin_book_loader(data);
+            }
+        
+            else if(this.readyState==4 && this.status==401) {
+
+                if (this.responseText == "no book"){
+                    alert("sadly no books with this criteria")
+                }
+                
+            }
+        };
+        req.open("POST", "/adminSearch_author", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify({author}));
+    }
+    else{
+        consol
+        req.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
+                let data = JSON.parse(this.responseText);
+
+                admin_book_loader(data);
+            }
+        
+            else if(this.readyState==4 && this.status==401) {
+
+                if (this.responseText == "no book"){
+                    alert("sadly no books with this criteria")
+                }
+                
+            }
         };
         req.open("POST", "/adminSearch", true);
         req.setRequestHeader("Content-Type", "application/json");
-        req.send(JSON.stringify(Body));
+        req.send();
+    }
+
+
+
 
 }
 
 function admin_book_loader(data){
     document.getElementById("book search").innerHTML="";
+    console.log(data)
 }
 

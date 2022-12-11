@@ -70,5 +70,78 @@ router.post('/', (request,response) => {
 
 });
 
+router.post( "/adminSearch", (request,response) => {
+    let search = request.body.search;
+    let type = request.body.type.toLowerCase();
+        //by ISBN
+        if(type == "isbn" )
+        config.query("SELECT * FROM books WHERE ISBN="+search, (err,res)=>{
+            if (err) throw err;
+            if(res.rows.length > 0){
+                response.send(JSON.stringify(res.rows));
+                return;
+            } else{
+                console.log("401")
+                response.status(401).send("Not found");
+                return;
+            }
+        });
+
+});
+
+router.post( "/adminSearch_name", (request,response) => {
+    let search = request.body.search;
+    let type = request.body.type.toLowerCase();
+        //by ISBN
+        if(type == "isbn" )
+        config.query("SELECT * FROM books WHERE ISBN="+search, (err,res)=>{
+            if (err) throw err;
+            if(res.rows.length > 0){
+                response.send(JSON.stringify(res.rows));
+                return;
+            } else{
+                console.log("401")
+                response.status(401).send("Not found");
+                return;
+            }
+        });
+
+});
+
+
+router.post( "/adminSearch_author", (request,response) => {
+    let search = request.body.search;
+    let type = request.body.type.toLowerCase();
+        //by ISBN
+        if(type == "isbn" )
+        config.query("SELECT * FROM books WHERE ISBN="+search, (err,res)=>{
+            if (err) throw err;
+            if(res.rows.length > 0){
+                response.send(JSON.stringify(res.rows));
+                return;
+            } else{
+                console.log("401")
+                response.status(401).send("Not found");
+                return;
+            }
+        });
+
+});
+
+router.post( "/adminget", (request,response) => {
+        
+        config.query("SELECT * FROM books ", (err,res)=>{
+            if (err) throw err;
+            if(res.rows.length > 0){
+                response.send(JSON.stringify(res.rows));
+                return;
+            } else{
+                console.log("401")
+                response.status(401).send("Not found");
+                return;
+            }
+        });
+
+});
 
 module.exports = router;
