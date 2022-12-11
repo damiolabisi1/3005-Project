@@ -102,13 +102,13 @@ function search(){
             }
         }
         else if(this.readyState==4 && this.status==401) {
-            if (this.responseText == ""){
+            if (this.responseText == "Not found"){
                 document.getElementById("list").innerHTML = "Not found";
             }
         }
 
     };
-        req.open("POST", "/login", true);
+        req.open("POST", "/search", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
 }
