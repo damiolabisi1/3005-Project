@@ -206,8 +206,9 @@ function admin_search(){
     req.onreadystatechange = function () {
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
-            admin_book_loader(data);
             alert("tests");
+            admin_book_loader(data);
+            
         }
     
         else if(this.readyState==4 && this.status==401) {
