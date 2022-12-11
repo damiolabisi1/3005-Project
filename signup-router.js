@@ -2,14 +2,16 @@ const express = require('express');
 const config = require('./config.js');
 const fs = require('fs');
 const path = require('path');
+const { send } = require('express/lib/response.js');
 const app = express();
 let router = express.Router();
 
 app.use(express.json()); // body-parser middleware
 
-router.post(["/"], (request,response) => {
+router.post(['/'], (request,response) => {
     let username = request.body.username;
     let password = request.body.password;
+    let confirmp = request.body.confirm_password
     let user_address = request.body.address;
     let user_billing_address = request.billing_address;
 
@@ -18,6 +20,9 @@ router.post(["/"], (request,response) => {
     }
     else if(request.body.password == ""){
         response.status(401).send("Not valid");
+    }
+    else if(password != confirmp){
+        response.status(401).send("Wrong password");
     }
     
     else{
@@ -46,6 +51,7 @@ router.post(["/"], (request,response) => {
                     }
                          
                     else{
+                        console.log("401")
                         response.status(401).send("Username taken");
                         return;
                      }
@@ -70,6 +76,7 @@ router.post(["/"], (request,response) => {
                     }
                          
                     else{
+                        console.log("401")
                         response.status(401).send("Username taken");
                         return;
                      }
@@ -80,6 +87,8 @@ router.post(["/"], (request,response) => {
 
                 config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+user_name+"\',\'"+b+"\',\'"+a+"\',\'"+user_password+"\',FALSE)", (err,res)=>{
                     if(error_b) throw error_b;
+                    console.log("200")
+                    response.status(200).send();
                 });
             }
 
