@@ -8,6 +8,11 @@ const config = require('./config.js');
 app.use(express.json()); // body-parser middleware
 router.post('/', (request,response) => {
     let search = request.body.search;
+    if(search == ''){console.log("401")
+    response.status(401).send("Not found");
+    return;
+}
+    
     let type = request.body.type.toLowerCase();
         //by ISBN
         if(type == "isbn" ){
@@ -79,11 +84,10 @@ router.post('/', (request,response) => {
 });
 
 router.post( "/admin", (request,response) => {
-    let search = request.body.search;
-    let type = request.body.type.toLowerCase();
-        //by ISBN
-        if(type == "isbn" )
-        config.query("SELECT * FROM books WHERE ISBN="+search, (err,res)=>{
+    let book = request.body.bookname.toLowerCase();
+    let author = request.body.author.toLowerCase();
+        if(book != '' && author != '')
+        config.query("SELECT * FROM books", (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
                 response.send(JSON.stringify(res.rows));
@@ -94,8 +98,51 @@ router.post( "/admin", (request,response) => {
                 return;
             }
         });
+                //by author
+                if(book == '' && author != ''){
+                    config.query("SELECT * FROM books WHERE position(\'"+book+"\' in books.b_name)>0", (err,res)=>{
+                        if (err) throw err;
+                        if(res.rows.length > 0){
+                            console.log(200,JSON.stringify(res.rows))
+                            response.status(200).send(JSON.stringify(res.rows));
+                            return;
+                        } else{
+                            console.log("401")
+                            response.status(401).send("Not found");
+                            return;
+                        }
+                    });
+                }
+                if(book != '' && author == ''){
+                    config.query("SELECT * FROM books WHERE position(\'"+author+"\' in books.author)>0", (err,res)=>{
+                        if (err) throw err;
+                        if(res.rows.length > 0){
+                            console.log(200,JSON.stringify(res.rows))
+                            response.status(200).send(JSON.stringify(res.rows));
+                            return;
+                        }
+                        else{
+                            console.log("401")
+                            response.status(401).send("Not found");
+                            return;
+                        }
+                    });
+                }
+                if(book == '' && author == ''){
+                    config.query("SELECT * FROM books WHERE position(\'"+book+"\' in books.b_name)>0 AND position(\'"+author+"\' in books.author)>0", (err,res)=>{
+                        if (err) throw err;
+                        if(res.rows.length > 0){
+                            console.log(200,JSON.stringify(res.rows))
+                            response.status(200).send(JSON.stringify(res.rows));
+                            return;
+                        } else{
+                            console.log("401")
+                            response.status(401).send("Not found");
+                            return;
+                        }
+                    });
+                }
 
 });
-
 
 module.exports = router;
