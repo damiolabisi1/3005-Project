@@ -37,3 +37,34 @@ function login(){
         req.send(JSON.stringify(Body));
     }
 
+//Handles the register button
+function register(){
+	let username = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
+    
+	const Body = {username,password}
+	
+	let req = new XMLHttpRequest();
+	
+	req.onreadystatechange = function () {
+	if (this.readyState==4 && this.status==200) {
+        let id = JSON.parse(this.responseText);
+		alert("Succesfully Registered.\n");
+			window.location = "/users/"+id;
+	}
+	else if(this.readyState==4 && this.status==401) {
+        if (this.responseText == "Username taken"){
+            alert("Username taken");
+        }
+        else if(this.responseText == "Not valid user"){
+            alert("Enter a valid username");
+        }
+        else if(this.responseText == "Not valid"){
+            alert("Enter a valid password");
+        }
+    }
+    };
+	req.open("POST", "/register", true);
+	req.setRequestHeader("Content-Type", "application/json");
+	req.send(JSON.stringify(Body));
+}
