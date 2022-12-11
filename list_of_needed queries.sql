@@ -4,19 +4,30 @@ FROM users
 WHERE U_name='owner'
 
 --Signup: adds a user and their info to the data base
-    --users addresses
-    INSERT INTO address(address)
-    VALUES
-	('mozaihas house');
-    --users info
-    INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege)
-    VALUES ('mozaiha',(SELECT a_id
-            	FROM address
-				WHERE address='mozaihas billing address'  
-            ),(SELECT a_id
-            	FROM address
-				WHERE address='mozaihas shipping address'  
-            ),'mo',FALSE);
+    --if user address already exists
+        --gets aid of the user
+        SELECT A_ID
+        FROM address
+        WHERE address='edis house'
+
+        --inserts the user info
+        INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege)
+        VALUES ('mozaiha','2','2','mo',FALSE);
+
+    --if user address doesnt exist
+        --users addresses
+        INSERT INTO address(address)
+        VALUES
+        ('mozaihas house');
+        --users info
+        INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege)
+        VALUES ('mozaiha',(SELECT a_id
+                    FROM address
+                    WHERE address='mozaihas billing address'  
+                ),(SELECT a_id
+                    FROM address
+                    WHERE address='mozaihas shipping address'  
+                ),'mo',FALSE);
     
 --Searching for books
     --by ISBN
@@ -56,6 +67,7 @@ WHERE users.U_ID='2'
     NATURAL JOIN books_in_order 
     NATURAL JOIN books
     WHERE U_ID='3'
+
 --all tables
 SELECT *
 FROM users;
@@ -88,6 +100,9 @@ SELECT *
 FROM book_genre;
 
 
+--the revenue ofn the book store
+SELECT SUM(books.price*books_in_order.quantity)
+FROM books_in_order
+NATURAL JOIN books
 
-
-config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username+"\'", (err,res)=>{});
+--order 
