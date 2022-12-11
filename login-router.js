@@ -33,8 +33,8 @@ router.post(['/'], (request,response) => {
 
         if(res){
             console.log(res);
-            if(res.rows[1].u_password == password){
-                response.send(res.rows[1].u_id);
+            if(res.rows[0].u_password == password){
+                response.send(res.rows[0].u_id.toString());
                 return;
             }
             if(res.rows[1].u_password != password){
