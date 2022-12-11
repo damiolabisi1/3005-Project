@@ -12,7 +12,7 @@ router.post('/', (request,response) => {
 
     let username = request.body.username;
     let password = request.body.password;
-    let confirmp = request.body.confirmpassword
+    let confirmp = request.body.confirm_password
     let user_address = request.body.address;
     let user_billing_address = request.body.billing_address;
     var a;
@@ -24,9 +24,9 @@ router.post('/', (request,response) => {
     else if(request.body.password == ""){
         response.status(401).send("Not valid");
     }
-    // else if(password != confirmp){
-    //     response.status(401).send("Wrong password");
-    // }
+    else if(password !== confirmp){
+        response.status(401).send("Wrong password");
+    }
     
     else{
         config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username+"\'", (err,res)=>{
