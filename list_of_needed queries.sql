@@ -67,6 +67,7 @@ WHERE users.U_ID='2'
     NATURAL JOIN books_in_order 
     NATURAL JOIN books
     WHERE U_ID='3'
+
 --all tables
 SELECT *
 FROM users;
@@ -99,6 +100,9 @@ SELECT *
 FROM book_genre;
 
 
+--the revenue ofn the book store
+SELECT SUM(books.price*books_in_order.quantity)
+FROM books_in_order
+NATURAL JOIN books
 
-
-config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username+"\'", (err,res)=>{});
+--order 
