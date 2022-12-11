@@ -94,16 +94,24 @@ function search(){
 
     req.onreadystatechange = function () {
         if (this.readyState==4 && this.status==200) {
-            let data = JSON.parse(this.responseText);
+            let data = JSON.parse(this.responseText)[0];
             let list = document.getElementById("result");
             // list.innerHTML = ""
-            for(let i = 0; i < data.length; i++){
-                list.appendChild(ul); 
+            for( let key in data){
+                if(data.hasOwnProperty(key)) {
+                    // console.log(data[key]);
+                    // list.appendChild(data[key]);
+                    // console.log(data[key]);
+                    list.innerHTML ='<p> ISBN: '+data.isbn +'<p> Name: '+data.b_name +'<p> Author: '+data.author +
+                    '</p> Publisher No: '+data.publisher_number +'<p> Number of pages: '+data.number_of_pages +'<p> Price: '+data.price +
+                    '<p> Number in stock: '+data.number_in_stock +'<p> Sale Percentage: '+data.publisher_sale_percentage +'<p> Date Published: '+data.date_published +
+                    '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
+                }
             }
         }
         else if(this.readyState==4 && this.status==401) {
             if (this.responseText == "Not found"){
-                document.getElementById("list").innerHTML = "Not found";
+                document.getElementById("result").innerHTML = '<p> Not found <p>';
             }
         }
 
