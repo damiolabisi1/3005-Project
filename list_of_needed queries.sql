@@ -105,4 +105,9 @@ SELECT SUM(books.price*books_in_order.quantity)
 FROM books_in_order
 NATURAL JOIN books
 
---order 
+--the prive of each order
+SELECT SUM(books.price*books_in_order.quantity)
+FROM orders
+NATURAL JOIN books_in_order
+NATURAL JOIN books
+GROUP BY orders.order_number
