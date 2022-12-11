@@ -4,7 +4,7 @@
 .UserErr{
     color: red;
 }
-main {
+.log {
     height: 100%;
     display: flex;
     align-items: center;
@@ -32,4 +32,8 @@ main {
 }
 .show{
     display: contents;
+}
+
+.header{
+    align-items: center;
 }

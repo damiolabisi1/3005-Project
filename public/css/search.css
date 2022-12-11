@@ -3,6 +3,7 @@
 }
 .sarea{
     text-align: left;
+    display: flex;
 }
 .Search{
     text-align: center;
