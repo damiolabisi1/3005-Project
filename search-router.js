@@ -38,7 +38,7 @@ router.post('/', (request,response) => {
         }
         //by author
         else if(type == "author" ){
-        config.query("SELECT * FROM books WHERE author=\'"+search+"\'", (err,res)=>{
+        config.query("SELECT * FROM books WHERE position(\'"+search+"\' in books.author)>0", (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
                 console.log(200,JSON.stringify(res.rows))
@@ -52,7 +52,7 @@ router.post('/', (request,response) => {
         });
     }
         else if(type == "name" ){
-        config.query("SELECT * FROM books WHERE B_name=\'"+search+"\'", (err,res)=>{
+        config.query("SELECT * FROM books WHERE position(\'"+search+"\' in books.b_name)>0", (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
                 console.log(200,JSON.stringify(res.rows))
@@ -67,7 +67,7 @@ router.post('/', (request,response) => {
         });
     }
         else if(type == "genre" ){
-        config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published FROM genre NATURAL JOIN book_genre NATURAL JOIN books WHERE G_name = \'"+search+"\'", (err,res)=>{
+        config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published FROM genre NATURAL JOIN book_genre NATURAL JOIN books WHERE position(\'"+search+"\' in genre.g_name)>0", (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
                 console.log(200,JSON.stringify(res.rows))

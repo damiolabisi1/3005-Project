@@ -97,27 +97,11 @@ function search(){
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
             let list = document.getElementById("result");
-            // let newlist = document.createElement('ul')
-            // list.innerHTML = ""
             for(let i = 0;i<data.length;i++){
-                for( let key in data[i]){
-                    if(data[i].hasOwnProperty(key)) {
-                        let newlist = document.createElement('ul');
-                        // console.log(data[key]);
-                        // list.appendChild(data[key]);
-                        // console.log(data[key]);
-                        // list.appendChild(newlist);
-                        newlist.value = '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
-                        '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
-                        '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
-                        '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
-                        list.appendChild(newlist);
-                        // list.innerHTML ='<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
-                        // '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
-                        // '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
-                        // '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
-                    }
-                }
+                list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
+                '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
+                '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
+                '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
             }
         }
         else if(this.readyState==4 && this.status==401) {
@@ -207,93 +191,29 @@ function admin_search(){
 
     let bookname = document.getElementById("book name").value;
 	let author = document.getElementById("book author").value;
+
+    console.log("bookname: "+bookname);
+    console.log("author: "+author)
+    alert("bookname: "+bookname+" author: "+author)
     const body={bookname,author};
 
-    if (bookname=="" && author=="" ){
-        req.onreadystatechange = function () {
-            if (this.readyState==4 && this.status==200) {
-                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
-                let data = JSON.parse(this.responseText);
-
-                admin_book_loader(data);
-            }
-        
-            else if(this.readyState==4 && this.status==401) {
-
-                if (this.responseText == "no book"){
-                    alert("sadly no books with this criteria")
-                }
-                
-            }
+    req.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            let data = JSON.parse(this.responseText);
+            alert("tests");
+            admin_book_loader(data);
+            
+        }
+    
+        else if(this.readyState==4 && this.status==401) {
+            
+            
+        }
         };
-        req.open("POST", "/adminget", true);
+        req.open("POST", "/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
-    }
-    else if (bookname==""){
-        req.onreadystatechange = function () {
-            if (this.readyState==4 && this.status==200) {
-                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
-                let data = JSON.parse(this.responseText);
-
-                admin_book_loader(data);
-            }
-        
-            else if(this.readyState==4 && this.status==401) {
-
-                if (this.responseText == "no book"){
-                    alert("sadly no books with this criteria")
-                }
-                
-            }
-        };
-        req.open("POST", "/adminSearch_name", true);
-        req.setRequestHeader("Content-Type", "application/json");
-        req.send(JSON.stringify({bookname}));
-    }
-    else if (author==""){
-        req.onreadystatechange = function () {
-            if (this.readyState==4 && this.status==200) {
-                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
-                let data = JSON.parse(this.responseText);
-
-                admin_book_loader(data);
-            }
-        
-            else if(this.readyState==4 && this.status==401) {
-
-                if (this.responseText == "no book"){
-                    alert("sadly no books with this criteria")
-                }
-                
-            }
-        };
-        req.open("POST", "/adminSearch_author", true);
-        req.setRequestHeader("Content-Type", "application/json");
-        req.send(JSON.stringify({author}));
-    }
-    else{
-        consol
-        req.onreadystatechange = function () {
-            if (this.readyState==4 && this.status==200) {
-                alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
-                let data = JSON.parse(this.responseText);
-
-                admin_book_loader(data);
-            }
-        
-            else if(this.readyState==4 && this.status==401) {
-
-                if (this.responseText == "no book"){
-                    alert("sadly no books with this criteria")
-                }
-                
-            }
-        };
-        req.open("POST", "/adminSearch", true);
-        req.setRequestHeader("Content-Type", "application/json");
-        req.send();
-    }
+    
 
 
 
@@ -303,5 +223,7 @@ function admin_search(){
 function admin_book_loader(data){
     document.getElementById("book search").innerHTML="";
     console.log(data)
+
+
 }
 
