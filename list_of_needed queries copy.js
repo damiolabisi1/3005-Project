@@ -12,18 +12,21 @@ config.query("SELECT U_id,U_name,U_password FROM users WHERE U_name=\'"+username
     
 //Searching for books
     //by ISBN
-    SELECT *
-    FROM books
-    WHERE ISBN=1
-    --by author
+    config.query("SELECT * FROM books WHERE ISBN="+book_id, (err,res)=>{});
+
+    //by author
     SELECT *
     FROM books
     WHERE author='Jack Black'
-    --by name
+    config.query("SELECT * FROM books WHERE author=\'"+book_id+"\'", (err,res)=>{});
+
+    //by name
     SELECT *
     FROM books
     WHERE B_name='The life of the Apple guru'
-    --by genre
+    config.query("SELECT * FROM books WHERE ISBN="+book_id, (err,res)=>{});
+
+    //by genre
     SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published
     FROM genre
     NATURAL JOIN book_genre
