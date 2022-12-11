@@ -7,6 +7,7 @@ let router = express.Router();
 const loginRouter = require("./login-router.js");
 const searchRouter = require("./search-router.js");
 const signupRouter = require("./signup-router.js");
+const accountRouter = require("./signup-account.js");
 
 let db;
 app.locals.db = db;
