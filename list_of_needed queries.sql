@@ -34,20 +34,24 @@ WHERE U_name='owner'
     SELECT *
     FROM books
     WHERE ISBN=1
+
     --by author
     SELECT *
-    FROM books
-    WHERE author='Jack Black'
+    FROM books 
+    WHERE position('author' in books.author)>0
+
     --by name
     SELECT *
-    FROM books
-    WHERE B_name='The life of the Apple guru'
+    FROM books 
+    WHERE position('name' in books.b_name)>0
+
     --by genre
     SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published
     FROM genre
     NATURAL JOIN book_genre
     NATURAL JOIN books
-    WHERE G_name = 'fantacy';
+    WHERE position('genre' in genre.g_name)>0
+;
 
 --Getting the content of a users cart
 SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published
