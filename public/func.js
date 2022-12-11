@@ -9,8 +9,12 @@ function login(){
         if (this.readyState==4 && this.status==200) {
             alert("Succesfully Logged-In.\n Redirecting to home page.\n");
             let data = JSON.parse(this.responseText);
-            window.location = "/login";
-            
+            // window.location = "/login";
+            let show = document.getElementById("login");
+            show.classList.remove("show");
+            show.classList.add("hidden");
+            let hid = document.getElementById("search");
+            hid.classList.remove("hidden");
         }
     
         else if(this.readyState==4 && this.status==401) {
