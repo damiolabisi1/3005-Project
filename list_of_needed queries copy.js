@@ -21,20 +21,25 @@ config.query("SELECT U_id,U_name,U_password FROM users WHERE U_name=\'"+username
 
         //sudo code for user registrtaton
             //gets aid of the user billing address query
+            config.query("SELECT A_ID FROM address WHERE address=\'"+user_billing_address+"\'", (err,res)=>{});
 
             //if (billing address aid is empty) {
                 //create an address
+                config.query("INSERT INTO address(address) VALUES (\'"+user_billing_address+"\')", (err,res)=>{});
                 //get the addresses aid
             //}
 
             //gets aid of the user address query
+            config.query("SELECT A_ID FROM address WHERE address=\'"+user_address+"\'", (err,res)=>{});
 
             //if (address aid is empty) {
                 //create an address
+                config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,res)=>{});
                 //get the addresses aid
             //}
 
             //create the user
+            config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+user_name+"\',\'"+address_billing_id+"\',\'"+address_id+"\',\'"+user_password+"\',FALSE)", (err,res)=>{});
     
 //Searching for books
     //by ISBN
