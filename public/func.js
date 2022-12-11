@@ -97,6 +97,7 @@ function search(){
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
             let list = document.getElementById("result");
+            list.innerHTML = "";
             for(let i = 0;i<data.length;i++){
                 list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
                 '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
