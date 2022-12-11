@@ -65,6 +65,28 @@ app.listen(PORT, ()=> {
     console.log(`Server listening on http://localhost:${PORT}`)
     });
 
+    config.query("SELECT * FROM users;", (err,res)=>{});
+
+    config.query("SELECT * FROM publishers;", (err,res)=>{});
+
+    config.query("SELECT * FROM orders;", (err,res)=>{});
+
+    config.query("SELECT * FROM books;", (err,res)=>{});
+
+    config.query("SELECT * FROM phone_numbers;", (err,res)=>{});
+
+    config.query("SELECT * FROM cart;", (err,res)=>{});
+
+    config.query("SELECT * FROM books_in_order;", (err,res)=>{});
+
+    config.query("SELECT * FROM address;", (err,res)=>{});
+
+    config.query("SELECT * FROM genre;", (err,res)=>{});
+
+    config.query("SELECT * FROM book_genre;", (err,res)=>{});
+
+
+
 process.on('SIGINT', function() {
     config.end(function () {
       console.log('Database disconnected through app termination');
