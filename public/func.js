@@ -9,8 +9,12 @@ function login(){
         if (this.readyState==4 && this.status==200) {
             alert("Succesfully Logged-In.\n Redirecting to home page.\n");
             let data = JSON.parse(this.responseText);
-            window.location = "/search";
-            
+            // window.location = "/login";
+            let show = document.getElementById("login");
+            show.classList.remove("show");
+            show.classList.add("hidden");
+            let hid = document.getElementById("search");
+            hid.classList.remove("hidden");
         }
     
         else if(this.readyState==4 && this.status==401) {
@@ -43,14 +47,13 @@ function login(){
 
 //Handles the register button
 function register(){
-    alert("sign up");
 	let username = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
-    let confirmpassword = document.getElementById("cpassword").value;
+    let confirm_password = document.getElementById("cpassword").value;
     let address = document.getElementById("address").value;
     let billing_address = document.getElementById("baddress").value;
     
-	const Body = {username,password, confirmpassword, address, billing_address}
+	const Body = {username,password, confirm_password, address, billing_address}
 	
 	let req = new XMLHttpRequest();
 	
@@ -58,7 +61,12 @@ function register(){
 	if (this.readyState==4 && this.status==200) {
         alert("Succesfully Registered. Please Login\n");
         let data = JSON.parse(this.responseText);
-		window.location = "/login";
+		window.location = "/login.html";
+
+        // console.log(password);
+        // if(password != confirm_password){
+        //     alert("Passwords don't match");
+        // }
 	}
 	else if(this.readyState==4 && this.status==401) {
         if (this.responseText == "Username taken"){
@@ -78,43 +86,31 @@ function register(){
 }
 
 function search(){
-    alert("hi");
     let search = document.getElementById("search").value;
     let searchtypeb= document.querySelector('input[name="radio"]:checked').id;
 
-    console.log(search);
-    console.log(searchtypeb);
+    const Body = {search,searchtypeb}
+	let req = new XMLHttpRequest();
 
-    // let req = new XMLHttpRequest();
-	// let params = "/?username=" + search;
-    // url = "/users"+params
-    // req.open("GET", url);
-    // req.setRequestHeader("Content-Type", "application/json");
-    // req.send();
+    req.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            let data = JSON.parse(this.responseText);
+            let list = document.getElementById("result");
+            // list.innerHTML = ""
+            for(let i = 0; i < data.length; i++){
+                list.appendChild(ul); 
+            }
+        }
+        else if(this.readyState==4 && this.status==401) {
+            if (this.responseText == "Not found"){
+                document.getElementById("list").innerHTML = "Not found";
+            }
+        }
 
-    // req.onreadystatechange = function () {
-    //     if (this.readyState==4 && this.status==200) {
-    //         let sea = JSON.parse(this.responseText);
-    //         let list = document.getElementById("result");
-    //         list.innerHTML = "<h1>Results</h1>";
-    //         for (let i = 0; i < sea.length; i++){
-    //             let users = sea[i];
-    //             if(!users.privacy){
-    //                 let seaElement = document.createElement("li");
-    //                 let seaData = document.createElement("a");
-    //                 seaData.className = "users";
-    //                 seaData.innerText = users.username;
-    //                 seaData.href = "http://localhost:3000/users/" + users._id;
-    //                 seaElement.appendChild(seaData);
-    //                 list.appendChild(seaElement);
-    //             }
-    //             else{
-    //                 console.log("no");
-    //             }
-    //         }
-    //     }
-        
-        // };
+    };
+        req.open("POST", "/search", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(Body));
 }
 
 // function book_generator(){

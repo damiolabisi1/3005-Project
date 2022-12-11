@@ -21,7 +21,7 @@ app.use(express.json()); // body-parser middleware
 //     })
 // });
 
-router.post(['/'], (request,response) => {
+router.post('/', (request,response) => {
     console.log(request.body)
 
     let username = request.body.Username;
