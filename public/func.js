@@ -9,7 +9,8 @@ function login(){
         if (this.readyState==4 && this.status==200) {
             alert("Succesfully Logged-In.\n Redirecting to home page.\n");
             let data = JSON.parse(this.responseText);
-            window.location = "/search.html/";
+            window.location = "/search";
+            
         }
     
         else if(this.readyState==4 && this.status==401) {
@@ -30,9 +31,6 @@ function login(){
                 document.getElementById("Err").innerHTML = "Incorrect Password";
                 document.getElementById("UserErr").innerHTML = "Incorrect Username";
             }
-            req.open("GET","http://localhost:8000/search?"+data,true);
-            req.setRequestHeader("Accept","application/json")
-            req.send();
             
         }
         };
@@ -41,8 +39,11 @@ function login(){
         req.send(JSON.stringify(Body));
     }
 
+
+
 //Handles the register button
 function register(){
+    alert("sign up");
 	let username = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
     let confirmpassword = document.getElementById("cpassword").value;
@@ -55,10 +56,9 @@ function register(){
 	
 	req.onreadystatechange = function () {
 	if (this.readyState==4 && this.status==200) {
-        let id = JSON.parse(this.responseText);
-		alert("Succesfully Registered.\n");
-			window.location = "/search";
-            document.getElementsByTagName('head')[0].id = data;
+        alert("Succesfully Registered. Please Login\n");
+        let data = JSON.parse(this.responseText);
+		window.location = "/login";
 	}
 	else if(this.readyState==4 && this.status==401) {
         if (this.responseText == "Username taken"){
@@ -72,8 +72,48 @@ function register(){
         }
     }
     };
-	req.open("POST", "/register", true);
+	req.open("POST", "/signup", true);
 	req.setRequestHeader("Content-Type", "application/json");
 	req.send(JSON.stringify(Body));
+}
+
+function search(){
+    alert("hi");
+    let search = document.getElementById("search").value;
+    let searchtypeb= document.querySelector('input[name="radio"]:checked').id;
+
+    console.log(search);
+    console.log(searchtypeb);
+
+    // let req = new XMLHttpRequest();
+	// let params = "/?username=" + search;
+    // url = "/users"+params
+    // req.open("GET", url);
+    // req.setRequestHeader("Content-Type", "application/json");
+    // req.send();
+
+    // req.onreadystatechange = function () {
+    //     if (this.readyState==4 && this.status==200) {
+    //         let sea = JSON.parse(this.responseText);
+    //         let list = document.getElementById("result");
+    //         list.innerHTML = "<h1>Results</h1>";
+    //         for (let i = 0; i < sea.length; i++){
+    //             let users = sea[i];
+    //             if(!users.privacy){
+    //                 let seaElement = document.createElement("li");
+    //                 let seaData = document.createElement("a");
+    //                 seaData.className = "users";
+    //                 seaData.innerText = users.username;
+    //                 seaData.href = "http://localhost:3000/users/" + users._id;
+    //                 seaElement.appendChild(seaData);
+    //                 list.appendChild(seaElement);
+    //             }
+    //             else{
+    //                 console.log("no");
+    //             }
+    //         }
+    //     }
+        
+        // };
 }
 

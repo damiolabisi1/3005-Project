@@ -8,7 +8,7 @@ const config = require('./config.js');
 app.use(express.json()); // body-parser middleware
 
 
-router.get(["/","/search"], (req,res)=> {
+router.get("/", (req,res)=> {
     res.format({
 		'text/html': ()=> {
 			res.set('Content-Type', 'text/html');

@@ -7,7 +7,7 @@ let router = express.Router();
 
 app.use(express.json()); // body-parser middleware
 
-router.post(["/signup"], (request,response) => {
+router.post(["/"], (request,response) => {
     let username = request.body.username;
     let password = request.body.password;
     let user_address = request.body.address;
@@ -35,7 +35,7 @@ router.post(["/signup"], (request,response) => {
                             config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,result)=>{
                                 if(err) throw err;
                             })
-                            config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+username+"\',(SELECT a_id FROM address WHERE address=\'"+user_billing_address+"\'),(SELECT a_id FROM address WHERE address=\'"+user_address+"\'),\'"+user_password+"\',FALSE)", (err,res)=>{
+                            config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+username+"\',(SELECT a_id FROM address WHERE address=\'"+user_billing_address+"\'),(SELECT a_id FROM address WHERE address=\'"+user_address+"\'),\'"+password+"\',FALSE)", (err,res)=>{
                                 if(err) throw err;
                                 console.log(res)
                             });
@@ -49,6 +49,7 @@ router.post(["/signup"], (request,response) => {
                 });
                 }
             else{
+                console.log(401);
                 response.status(401).send("Username taken");
                 return;
         }
