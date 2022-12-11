@@ -4,9 +4,10 @@ config.query('SELECT U_id,U_name,U_password From users Where U_name=\''+username
 config.query("SELECT U_id,U_name,U_password FROM users WHERE U_name=\'"+username+"\'", (err,res)=>{});
 
 //Signup: adds a user and their info to the data base
+    //gets aid of the user
+    config.query("SELECT A_ID FROM address WHERE address=\'"+user_address+"\'", (err,res)=>{});
+
     //if user address already exists
-        //gets aid of the user
-        config.query("SELECT A_ID FROM address WHERE address=\'"+user_address+"\'", (err,res)=>{});
 
         //inserts the user info
         config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+user_name+"\',\'"+address_id+"\',\'"+address_id+"\',\'"+user_password+"\',FALSE)", (err,res)=>{});
