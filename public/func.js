@@ -9,7 +9,7 @@ function login(){
         if (this.readyState==4 && this.status==200) {
             alert("Succesfully Logged-In.\n Redirecting to home page.\n");
             let data = JSON.parse(this.responseText);
-            window.location = "/search";
+            window.location = "/login";
             
         }
     
@@ -69,6 +69,9 @@ function register(){
         else if(this.responseText == "Not valid"){
             alert("Enter a valid password");
         }
+        else if(this.responseText == "Wrong password"){
+            alert("Passwords don't match");
+        }
     }
     };
 	req.open("POST", "/signup", true);
@@ -80,71 +83,27 @@ function search(){
     let search = document.getElementById("search").value;
     let searchtypeb= document.querySelector('input[name="radio"]:checked').id;
 
-    // const Body = {Username,Password}
-	// let req = new XMLHttpRequest();
+    const Body = {search,searchtypeb}
+	let req = new XMLHttpRequest();
 
-    // req.onreadystatechange = function () {
-    //     if (this.readyState==4 && this.status==200) {
-    //         alert("Succesfully Logged-In.\n Redirecting to home page.\n");
-    //         let data = JSON.parse(this.responseText);
-    //         window.location = "/search";
-            
-    //     }
-    
-    //     else if(this.readyState==4 && this.status==401) {
-    //         if (this.responseText == "Invalid password"){
-    //             document.getElementById("Err").innerHTML = "Incorrect Password";
-    //         }
-    //         else{
-    //             document.getElementById("Err").innerHTML = "";
-    //         }
-    //         if (this.responseText == "Invalid username"){
-    //         document.getElementById("UserErr").innerHTML = "Incorrect Username";
-    //         }
-    //         else{
-    //             document.getElementById("UserErr").innerHTML = "";
-    //         }
+    req.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            let data = JSON.parse(this.responseText);
+            let list = document.getElementById("result");
+            // list.innerHTML = ""
+            for(let i = 0; i < data.length; i++){
+                list.appendChild(ul); 
+            }
+        }
+        else if(this.readyState==4 && this.status==401) {
+            if (this.responseText == ""){
+                document.getElementById("list").innerHTML = "Not found";
+            }
+        }
 
-    //         if (this.responseText == "Invalid credentials" && "Invalid credentials pass"){
-    //             document.getElementById("Err").innerHTML = "Incorrect Password";
-    //             document.getElementById("UserErr").innerHTML = "Incorrect Username";
-    //         }
-            
-    //     }
-    //     };
-    //     req.open("POST", "/login", true);
-    //     req.setRequestHeader("Content-Type", "application/json");
-    //     req.send(JSON.stringify(Body));
-
-    // let req = new XMLHttpRequest();
-	// let params = "/?username=" + search;
-    // url = "/users"+params
-    // req.open("GET", url);
-    // req.setRequestHeader("Content-Type", "application/json");
-    // req.send();
-
-    // req.onreadystatechange = function () {
-    //     if (this.readyState==4 && this.status==200) {
-    //         let sea = JSON.parse(this.responseText);
-    //         let list = document.getElementById("result");
-    //         list.innerHTML = "<h1>Results</h1>";
-    //         for (let i = 0; i < sea.length; i++){
-    //             let users = sea[i];
-    //             if(!users.privacy){
-    //                 let seaElement = document.createElement("li");
-    //                 let seaData = document.createElement("a");
-    //                 seaData.className = "users";
-    //                 seaData.innerText = users.username;
-    //                 seaData.href = "http://localhost:3000/users/" + users._id;
-    //                 seaElement.appendChild(seaData);
-    //                 list.appendChild(seaElement);
-    //             }
-    //             else{
-    //                 console.log("no");
-    //             }
-    //         }
-    //     }
-        
-        // };
+    };
+        req.open("POST", "/login", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(Body));
 }
 
