@@ -43,7 +43,7 @@ app.use((req,_,next)=> {
 //All requests starting with /fridges will be forwarded to this router
 app.use("/login", loginRouter);
 app.use("/search",searchRouter);
-app.post("/signup", signupRouter);
+app.use("/signup", signupRouter);
 
 
 config.connect((err)=>{

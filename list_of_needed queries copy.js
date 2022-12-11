@@ -91,7 +91,16 @@ config.query("SELECT SUM(books.price*books_in_order.quantity) FROM books_in_orde
 //the prive of each order
 config.query("SELECT SUM(books.price*books_in_order.quantity) FROM orders NATURAL JOIN books_in_order NATURAL JOIN books GROUP BY orders.order_number", (err,res)=>{});
 
+//store owner adding new books 
+    //gets book if exists
+    config.query("SELECT * FROM books WHERE books.b_name=\'"+book_name+"\' AND author=\'"+author+"\'", (err,res)=>{});
 
+    //inserts book
+        //get publisher
+        config.query("SELECT publisher_number FROM publishers WHERE p_name=\'"+publisher+"\'", (err,res)=>{});
+
+        //insert the book info
+        config.query("INSERT INTO books(B_name,Author,publisher_number,number_of_pages,price,number_in_stock,publisher_sale_percentage,date_published) VALUES (data goes in here)", (err,res)=>{});
 
 
 

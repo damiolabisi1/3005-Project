@@ -111,3 +111,27 @@ FROM orders
 NATURAL JOIN books_in_order
 NATURAL JOIN books
 GROUP BY orders.order_number
+
+--store owner adding new books 
+    --gets book if exists
+    SELECT *
+    FROM books
+    WHERE books.b_name='Harry Potter: The light of the moon' AND author='Harry Potter'
+
+    --inserts book
+        --get publisher
+        SELECT publisher_number
+        FROM publishers
+        WHERE p_name='Fire publishing'
+
+        --insert the book info
+        INSERT INTO books(B_name,Author,publisher_number,number_of_pages,price,number_in_stock,publisher_sale_percentage,date_published)
+        VALUES
+	        ()
+
+
+
+
+
+
+
