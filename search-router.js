@@ -14,7 +14,8 @@ router.post('/', (request,response) => {
         config.query("SELECT * FROM books WHERE ISBN="+search, (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
-                response.send(JSON.stringify(res.rows));
+                console.log(200)
+                response.status(200).send(JSON.stringify(res.rows));
                 return;
             } else{
                 console.log("401")
@@ -28,7 +29,8 @@ router.post('/', (request,response) => {
         config.query("SELECT * FROM books WHERE author=\'"+search+"\'", (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
-                response.send(JSON.stringify(res.rows));
+                console.log(200)
+                response.status(200).send(JSON.stringify(res.rows));
                 return;
             } else{
                 console.log("401")
@@ -41,7 +43,8 @@ router.post('/', (request,response) => {
         config.query("SELECT * FROM books WHERE B_name=\'"+search+"\'", (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
-                response.send(JSON.stringify(res.rows));
+                console.log(200)
+                response.status(200).send(JSON.stringify(res.rows));
                 return;
             }
             else{
@@ -55,7 +58,8 @@ router.post('/', (request,response) => {
         config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published FROM genre NATURAL JOIN book_genre NATURAL JOIN books WHERE G_name = \'"+search+"\'", (err,res)=>{
             if (err) throw err;
             if(res.rows.length > 0){
-                response.send(JSON.stringify(res.rows));
+                console.log(200)
+                response.status(200).send(JSON.stringify(res.rows));
                 return;
             } else{
                 console.log("401")
