@@ -34,8 +34,9 @@ router.post('/', (request,response) => {
         if(res.rows.length != 0){
             config.query("SELECT * FROM books ", (error,result)=>{
                 if (error)throw error;
-                let books = JSON.stringify(result.rows);
+                let books = result.rows;
                 books.u_id =res.rows[0].u_id.toString();
+                JSON.stringify(books);
                 response.status(200).send(books);
                 return;});
             
