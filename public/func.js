@@ -117,3 +117,29 @@ function search(){
         // };
 }
 
+// function book_generator(){
+    
+//     //get the json with the book info
+
+//     for(loop through the json books){
+//         let option= document.createElement("option");
+//         option.textContent = cat;
+//         option.id=cat;
+//         option.value = cat;
+//         document.getElementById("select_div").appendChild(option);
+
+//     }
+
+//     let book= document.createElement("text");
+//     book.textContent = book_info_function();//function which takes in the book info and puts it in a printable format
+//     book.id=bookname;//
+//     document.getElementById("books_in_store").appendChild(book);
+
+//     let option= document.createElement("button");
+//     option.textContent = cat;
+//     option.id=cat;
+//     option.value = cat;
+//     document.getElementById("select_div").appendChild(option);
+
+// }
+
