@@ -24,12 +24,12 @@ router.post(["/signup"], (request,response) => {
             if(err) throw err;
 
             if(res.rows.length == 0){
-                db.collection("users").insertOne({username : username, password :password, privacy: privacy})
-                    db.collection("users").findOne({username : username},function(err, result){  
-                        if(err) throw err;
-
-                        response.status(200).send(result._id);
-                    })
+                config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,res)=>{
+                    if(err) throw err;
+                    else{
+                        
+                    };
+                });
                 }
             else{
                 response.status(401).send("Username taken");
