@@ -25,39 +25,68 @@ router.post(["/"], (request,response) => {
             console.log(err,res)
             if(err) throw err;
 
-            else if(res.rows.length == 0){
-                config.query("SELECT A_ID FROM address WHERE address=\'"+user_address+"\'", (err,resulter)=>{
+            else if(res.rows.length == 0){      
+                let b;
+                let a;
+                config.query("SELECT A_ID FROM address WHERE address=\'"+user_billing_address+"\'", (e,resulter)=>{
+                    b=resulter.row[0].a_id;
                     if(err) throw err;
                     else if(resulter.rows.length == 0){
-                            config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,result)=>{
-                                if(err) throw err;
-                            })
-                            config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (err,result)=>{
-                                if(err) throw err;
-                            })
-                            config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+username+"\',(SELECT a_id FROM address WHERE address=\'"+user_billing_address+"\'),(SELECT a_id FROM address WHERE address=\'"+user_address+"\'),\'"+password+"\',FALSE)", (err,res)=>{
-                                if(err) throw err;
-                                console.log(res)
-                            });
-                        }
-                    else{
-                        config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+username+"\',\'"+user_billing_address+"\',\'"+resulter.row[1].address_id+"\',\'"+password+"\',FALSE)", (err,res)=>{
-                            if(err) throw err;
+                        config.query("INSERT INTO address(address) VALUES (\'"+user_billing_address+"\')", (error_b,create_b)=>{
+                            
+                            
                         });
+
+                        config.query("SELECT A_ID FROM address WHERE address=\'"+user_billing_address+"\'", (error_id,res_id)=>{
+                            if(error_id) throw error_id;
+                            b=res_id.row[0].a_id;
+                        });
+                            
+
                     }
-                        
-                });
-                }
-            else{
-                console.log(401);
-                response.status(401).send("Username taken");
-                return;
-        }
+                         
+                    else{
+                        response.status(401).send("Username taken");
+                        return;
+                     }
         
-    })
-}
+                })
+
+                config.query("SELECT A_ID FROM address WHERE address=\'"+user_address+"\'", (e,resulter)=>{
+                    a=resulter.row[0].a_id;
+                    if(err) throw err;
+                    else if(resulter.rows.length == 0){
+                        config.query("INSERT INTO address(address) VALUES (\'"+user_address+"\')", (error_b,create_b)=>{
+                            
+                            
+                        });
+
+                        config.query("SELECT A_ID FROM address WHERE address=\'"+user_address+"\'", (error_id,res_id)=>{
+                            if(error_id) throw error_id;
+                            a=res_id.row[0].a_id;
+                        });
+                            
+
+                    }
+                         
+                    else{
+                        response.status(401).send("Username taken");
+                        return;
+                     }
+        
+                })
+
+
+
+                config.query("INSERT INTO users(U_name,billing_address,address,U_password,Admin_privilege) VALUES (\'"+user_name+"\',\'"+b+"\',\'"+a+"\',\'"+user_password+"\',FALSE)", (err,res)=>{
+                    if(error_b) throw error_b;
+                });
+            }
 
 });
 
+}
+
+});
 
 module.exports = router;
