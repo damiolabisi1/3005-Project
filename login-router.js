@@ -37,7 +37,7 @@ router.post(['/'], (request,response) => {
                 response.send(res.rows[0].u_id.toString());
                 return;
             }
-            if(res.rows[1].u_password != password){
+            if(res.rows[0].u_password != password){
                 response.status(401).send("Invalid password");
             }
         }
