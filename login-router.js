@@ -32,11 +32,14 @@ router.post('/', (request,response) => {
         if(err) throw err;
 
         if(res.rows.length != 0){
-            console.log(res);
-            if(res.rows[0].u_password == password){
-                response.send(res.rows[0].u_id.toString());
-                return;
-            }
+            config.query("SELECT * FROM books ", (error,result)=>{
+                if (error)throw error;
+                let books = result.rows;
+                books.u_id =res.rows[0].u_id.toString();
+                JSON.stringify(books);
+                response.status(200).send(books);
+                return;});
+            
             if(res.rows[0].u_password != password){
                 response.status(401).send("Invalid password");
             }
@@ -62,7 +65,14 @@ router.post('/admin', (request,response) => {
         if(res.rows.length != 0){
             console.log(res);
             if(res.rows[0].u_password == password && admin_privileges == 'true'){
-                response.send(res.rows[0].u_id.toString());
+                config.query("SELECT * FROM books ", (error,result)=>{
+                    if (error)throw error;
+                    let books = JSON.stringify(res.rows);
+                    let u_id = res.rows[0].u_id.toString();
+
+
+                    response.send(u_id,books);
+                });
                 return;
             }
             if(res.rows[0].u_password != password){
