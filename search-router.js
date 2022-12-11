@@ -11,9 +11,10 @@ router.post('/', (request,response) => {
     let type = request.body.type.toLowerCase();
         //by ISBN
         if(type == "isbn" ){
-            if (typeof search == 'string'){console.log("401")
+            if (isNaN(search)){console.log("401")
             response.status(401).send("Not found");
             return;
+        
         }
             else{
                 config.query("SELECT * FROM books WHERE ISBN="+search, (err,res)=>{
