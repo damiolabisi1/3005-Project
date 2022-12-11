@@ -22,12 +22,7 @@ app.use(express.json()); // body-parser middleware
 // });
 
 router.post(['/'], (request,response) => {
-    request = request.toString()
-    console.log(request)
-    if(request.session.login){
-        response.status(201).send("Logged in");
-        return;
-    }
+    console.log(request.body)
 
     let username = request.body.Username;
     let password = request.body.Password;
@@ -38,12 +33,8 @@ router.post(['/'], (request,response) => {
 
         if(res){
             console.log(res);
-            if(res.rows[1].u_password == password){
-                request.session.login = true;
-                request.session.username = username;
-                request.session.userid = res.rows[1].u_id ;
-                console.log(res.rows[1].u_id );
-                response.send(res.rows[1].u_id);
+            if(res.rows[0].u_password == password){
+                response.send(res.rows[0].u_id.toString());
                 return;
             }
             if(res.rows[1].u_password != password){
