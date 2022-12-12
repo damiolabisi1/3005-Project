@@ -18,6 +18,7 @@ function login(){
             hid.classList.remove("hidden");
             let list = document.getElementById("result");
             // list.innerHTML = "";
+            user = data[data.length-1].u_id;
             for(let i = 0;i<data.length-1;i++){
                 list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
                 '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
@@ -174,6 +175,8 @@ function adminlogin(){
 
 function add(){
     let req = new XMLHttpRequest();
+
+    const Body = {user}
 
     req.onreadystatechange = function () {
         if (this.readyState==4 && this.status==200) {
