@@ -18,12 +18,12 @@ function login(){
             hid.classList.remove("hidden");
             let list = document.getElementById("result");
             // list.innerHTML = "";
-            user = data[data.length-1].u_id;
+            user = data[data.length-1];
             for(let i = 0;i<data.length-1;i++){
                 list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
                 '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
                 '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
-                '</p> <button id=\'' +data[i].u_id+"_"+data[i].isbn + '\'type="button" onclick="add(event)">Add to Cart</button> <br>'
+                '</p> <button id=\'' +data[i].isbn + '\'type="button" onclick="add(event)">Add to Cart</button> <br>'
             }
                 
         }
@@ -175,7 +175,7 @@ function adminlogin(){
 }
 
 function add(event){
-    let id = event.currentTarget.id;
+    let id = parseInt(event.currentTarget.id);
     let req = new XMLHttpRequest();
 
 
