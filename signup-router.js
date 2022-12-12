@@ -10,11 +10,11 @@ app.use(express.json()); // body-parser middleware
 
 router.post('/', (request,response) => {
 
-    let username = request.body.username.lowerCase();
-    let password = request.body.password.lowerCase();
-    let confirmp = request.body.confirm_password.lowerCase();
-    let user_address = request.body.address.lowerCase();
-    let user_billing_address = request.body.billing_address.lowerCase();
+    let username = request.body.username.toLowerCase();
+    let password = request.body.password.toLowerCase();
+    let confirmp = request.body.confirm_password.toLowerCase();
+    let user_address = request.body.address.toLowerCase();
+    let user_billing_address = request.body.billing_address.toLowerCase();
     var a;
     var b;
 
