@@ -9,8 +9,12 @@ app.use(express.json()); // body-parser middleware
 
 router.post('/cart', (request,response) => {
     let user = request.body.user
-    let id = request.body.id;
-    
+    let isbn = request.body.id;
+    config.query("SELECT books.number_in_stock FROM books WHERE ISBN=\'"+isbn+"\'", (err,res)=>{
+        if(err)throw err;
+        if(res.rows[0]>0){}
+
+    });
 
 
     

@@ -32,18 +32,19 @@ router.post('/', (request,response) => {
         if(err) throw err;
 
         if(res.rows.length != 0){
+            if(res.rows[0].u_password != password){
+                response.status(401).send("Invalid password");
+                return;
+            }
             config.query("SELECT * FROM books ", (error,result)=>{
                 if (error)throw error;
+                
                 let books = result.rows;
                 books[result.rows.length]=res.rows[0].u_id;
                 JSON.stringify(books);
                 console.log(books);
                 response.status(200).send(books);
                 return;});
-            
-            if(res.rows[0].u_password != password){
-                response.status(401).send("Invalid password");
-            }
         }
         else{
             response.status(401).send("Invalid username");
