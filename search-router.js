@@ -86,6 +86,7 @@ router.post('/', (request,response) => {
 router.post( "/admin", (request,response) => {
     let book = request.body.bookname.toLowerCase();
     let author = request.body.author.toLowerCase();
+    console.log(request);
         if(book != '' && author != '')
         config.query("SELECT * FROM books", (err,res)=>{
             if (err) throw err;
