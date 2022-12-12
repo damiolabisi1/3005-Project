@@ -143,16 +143,10 @@ function adminlogin(){
         if (this.readyState==4 && this.status==200) {
             alert("Succesfully Logged-In.\n Redirecting to admin page.\n");
             let data = JSON.parse(this.responseText);
-            window.location = "/admin.html";
-            // let show = document.getElementById("login");
-            // show.classList.remove("show");
-            // show.classList.add("hidden");
-            // let hid = document.getElementById("search");
-            // hid.classList.remove("hidden");
-            let show = document.getElementById("login");
+            let show = document.getElementById("adminlogin");
             show.classList.remove("show");
             show.classList.add("hidden");
-            let hid = document.getElementById("search");
+            let hid = document.getElementById("adata");
             hid.classList.remove("hidden");
             let list = document.getElementById("result");
         }
@@ -178,7 +172,7 @@ function adminlogin(){
             
         }
         };
-        req.open("POST", "login/admin", true);
+        req.open("POST", "/login/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
 }
@@ -199,37 +193,11 @@ function add(event){
                 // document.getElementById("result").innerHTML = '<p> Not found <p>';
             }
         }
-        req.open("POST", "/account/cart", true);
-        req.setRequestHeader("Content-Type", "application/json");
-        req.send(JSON.stringify(Body));
     }
+    req.open("POST", "/account/cart", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(JSON.stringify(Body));
 }
-
-// function book_generator(){
-    
-//     //get the json with the book info
-
-//     for(loop through the json books){
-//         let option= document.createElement("option");
-//         option.textContent = cat;
-//         option.id=cat;
-//         option.value = cat;
-//         document.getElementById("select_div").appendChild(option);
-
-//     }
-
-//     let book= document.createElement("text");
-//     book.textContent = book_info_function();//function which takes in the book info and puts it in a printable format
-//     book.id=bookname;//
-//     document.getElementById("books_in_store").appendChild(book);
-
-//     let option= document.createElement("button");
-//     option.textContent = cat;
-//     option.id=cat;
-//     option.value = cat;
-//     document.getElementById("select_div").appendChild(option);
-
-// }
 
 function admin_search(){
 
@@ -256,7 +224,7 @@ function admin_search(){
         }
 
     };
-        req.open("POST", "search/admin", true);
+        req.open("POST", "/search/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(body));
     
@@ -267,7 +235,7 @@ function admin_search(){
 }
 
 function admin_book_loader(data){
-    document.getElementById("book search").innerHTML="";
+    document.getElementById("book display").innerHTML="";
     console.log(data)
 
     let list = document.getElementById("book display");
