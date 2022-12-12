@@ -222,7 +222,7 @@ function admin_search(){
         }
 
     };
-        req.open("POST", "/search/admin", true);
+        req.open("POST", "search/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(body));
     
