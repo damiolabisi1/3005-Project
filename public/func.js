@@ -178,7 +178,7 @@ function adminlogin(){
             
         }
         };
-        req.open("POST", "login/admin", true);
+        req.open("POST", "/login/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
 }
@@ -199,10 +199,10 @@ function add(event){
                 // document.getElementById("result").innerHTML = '<p> Not found <p>';
             }
         }
-        req.open("POST", "account/cart", true);
-        req.setRequestHeader("Content-Type", "application/json");
-        req.send(JSON.stringify(Body));
     }
+    req.open("POST", "/account/cart", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(JSON.stringify(Body));
 }
 
 // function book_generator(){
@@ -256,7 +256,7 @@ function admin_search(){
         }
 
     };
-        req.open("POST", "search/admin", true);
+        req.open("POST", "/search/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(body));
     
