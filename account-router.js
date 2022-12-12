@@ -26,7 +26,7 @@ router.post('/cart', (request,response) => {
 
                         }
                         else{
-                            config.query("UPDATE cart SET quantity = quantity+1 WHERE isbn =\'"+isbn+"'\ AND u_id=\'"+user+"\'",(errr,ree)=>{
+                            config.query("UPDATE cart SET quantity = quantity+1 WHERE isbn =\'"+isbn+"\' AND u_id=\'"+user+"\'",(errr,ree)=>{
                                 if (errr)throw errr;
                             });
                         }
