@@ -57,6 +57,15 @@ config.query("SELECT U_id,U_name,U_password FROM users WHERE U_name=\'"+username
 //Getting the content of a users cart
 config.query("SELECT books.ISBN,books.B_name,books.author,books.publisher_number,books.number_of_pages,books.price,books.number_in_stock,books.publisher_sale_percentage,books.date_published FROM users NATURAL JOIN cart NATURAL JOIN books WHERE users.U_ID=\'"+user_id+"\'", (err,res)=>{});
 
+//add object to caRT
+config.query("INSERT INTO cart(U_ID,ISBN,quantity) VALUES (\' cart contents \')", (err,res)=>{});
+
+//make orders
+config.query("INSERT INTO orders(u_id,shipping_address,billing_address) VALUES () RETURNING u_id", (err,res)=>{});
+
+//add books to made order
+config.query("INSERT INTO books_in_order(ISBN,order_number,quantity) VALUES ()", (err,res)=>{});
+
 //Getting the orders a user has made
     //getting order infor
     config.query("SELECT order_number,tracking_number,shipping_address FROM orders WHERE U_ID=\'"+user_id+"\'", (err,res)=>{});

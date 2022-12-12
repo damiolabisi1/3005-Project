@@ -71,6 +71,13 @@ VALUES
     (2,2,2)
 RETURNING u_id
 
+--add books to made order
+INSERT INTO books_in_order(ISBN,order_number,quantity)
+VALUES
+    (),
+    (),
+    ();
+
 --Getting the orders a user has made
     --getting order infor
     SELECT order_number,tracking_number,shipping_address
