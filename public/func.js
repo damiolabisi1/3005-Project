@@ -71,6 +71,7 @@ function register(){
 	req.onreadystatechange = function () {
 	if (this.readyState==4 && this.status==200) {
         alert("Succesfully Registered. Please Login\n");
+        console.log(this.responseText);
         let data = JSON.parse(this.responseText);
 		window.location = "/login.html";
 
