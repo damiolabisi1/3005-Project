@@ -149,6 +149,12 @@ function adminlogin(){
             // show.classList.add("hidden");
             // let hid = document.getElementById("search");
             // hid.classList.remove("hidden");
+            let show = document.getElementById("login");
+            show.classList.remove("show");
+            show.classList.add("hidden");
+            let hid = document.getElementById("search");
+            hid.classList.remove("hidden");
+            let list = document.getElementById("result");
         }
     
         else if(this.readyState==4 && this.status==401) {
@@ -172,7 +178,7 @@ function adminlogin(){
             
         }
         };
-        req.open("POST", "login/adminlogin", true);
+        req.open("POST", "login/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
 }
