@@ -116,7 +116,8 @@ config.query("SELECT SUM(books.price*books_in_order.quantity) FROM orders NATURA
     //getamount of books in stock
     config.query("SELECT books.number_in_stock FROM books WHERE ISBN=\'"+isbn+"\'", (err,res)=>{});
 
-
+//reduces quantity a book in the database by 1
+config.query("UPDATE books SET number_in_stock = number_in_stock - 1 WHERE isbn =\'"+isbn, (err,res)=>{});
 
 
     {u_id:3231,books:[{b_id:1,quantity:4}{}{}{}]}
