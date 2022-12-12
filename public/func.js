@@ -23,7 +23,7 @@ function login(){
                 list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
                 '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
                 '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
-                '</p> <button id="cart" type="button" onclick="add(event)">Add to Cart</button> <br>'
+                '</p> <button id=\'' +data[i].u_id+"_"+data[i].isbn + '\'type="button" onclick="add(event)">Add to Cart</button> <br>'
             }
                 
         }
