@@ -187,9 +187,15 @@ function add(event){
     req.onreadystatechange = function () {
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
+            let quantity = document.getElementById("cart");
+            // quantity.innerHTML = "";
+            // for(let i = 0;i<data.length;i++){
+            quantity.innerHTML += '<p>' +data.b_name + '</p>'
+            // }
         }
         else if(this.readyState==4 && this.status==401) {
             if (this.responseText == "false"){
+                alert("Not enough quantity")
                 // document.getElementById("result").innerHTML = '<p> Not found <p>';
             }
         }
