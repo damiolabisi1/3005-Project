@@ -8,7 +8,7 @@ function login(){
 
     req.onreadystatechange = function () {
         if (this.readyState==4 && this.status==200) {
-            alert("Succesfully Logged-In.\n Redirecting to home page.\n");
+            alert("Succesfully Logged-In.\n Redirecting to search page.\n");
             let data = JSON.parse(this.responseText);
             // window.location = "/login";
             let show = document.getElementById("login");
@@ -18,6 +18,7 @@ function login(){
             hid.classList.remove("hidden");
             let list = document.getElementById("result");
             // list.innerHTML = "";
+            user = data[data.length-1].u_id;
             for(let i = 0;i<data.length-1;i++){
                 list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
                 '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
@@ -174,7 +175,23 @@ function adminlogin(){
 }
 
 function add(){
-    
+    let req = new XMLHttpRequest();
+
+    const Body = {user}
+
+    req.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            let data = JSON.parse(this.responseText);
+        }
+        else if(this.readyState==4 && this.status==401) {
+            if (this.responseText == "false"){
+                // document.getElementById("result").innerHTML = '<p> Not found <p>';
+            }
+        }
+        req.open("POST", "/account/cart", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(Body));
+    }
 }
 
 // function book_generator(){
