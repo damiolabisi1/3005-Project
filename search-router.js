@@ -7,7 +7,7 @@ const config = require('./config.js');
 
 app.use(express.json()); // body-parser middleware
 router.post('/', (request,response) => {
-    let search = request.body.search;
+    let search = request.body.search.toLowerCase();
     if(search == ''){console.log("401")
     response.status(401).send("Not found");
     return;

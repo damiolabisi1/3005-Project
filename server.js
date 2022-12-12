@@ -7,7 +7,7 @@ let router = express.Router();
 const loginRouter = require("./login-router.js");
 const searchRouter = require("./search-router.js");
 const signupRouter = require("./signup-router.js");
-// const accountRouter = require("./signup-account.js");
+const accountRouter = require("./account-router.js");
 
 let db;
 app.locals.db = db;
@@ -46,6 +46,7 @@ app.use((req,_,next)=> {
 app.use("/login", loginRouter);
 app.use("/search",searchRouter);
 app.use("/signup", signupRouter);
+app.use("/account",accountRouter);
 
 
 config.connect((err)=>{
