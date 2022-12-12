@@ -154,6 +154,15 @@ GROUP BY orders.order_number
     --add to existing book
     Update 
 
+--getamount of books in stock
+SELECT books.number_in_stock
+FROM books
+WHERE ISBN=1
+
+--reduces quantity a book in the database by 1
+UPDATE books
+SET number_in_stock = number_in_stock - 1
+WHERE isbn = 3;
 
 
 
