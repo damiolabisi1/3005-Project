@@ -199,7 +199,7 @@ function add(event){
                 // document.getElementById("result").innerHTML = '<p> Not found <p>';
             }
         }
-        req.open("POST", "/account/cart", true);
+        req.open("POST", "account/cart", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
     }

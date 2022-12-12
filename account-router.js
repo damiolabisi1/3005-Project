@@ -10,7 +10,6 @@ app.use(express.json()); // body-parser middleware
 router.post('/cart', (request,response) => {
     let user = request.body.user
     let isbn = request.body.id;
-    let qua =request.body.quantity
     config.query("SELECT books.number_in_stock FROM books WHERE ISBN=\'"+isbn+"\'", (err,res)=>{
         if(err)throw err;
         if(res.rows[0]>0){
@@ -18,15 +17,15 @@ router.post('/cart', (request,response) => {
                 if(e)throw e;
                 config.query("SELECT * FROM books WHERE ISBN=\'"+isbn+"\'", (er,re)=>{
                     if (er)throw er;
-                    config.quary("SELECT * FROM cart WHERE u_id=\`"+userId+"'\ AND b_id=\'"+bookId+"\'", (er,re)=>{
+                    config.quary("SELECT * FROM cart WHERE u_id=\`"+user+"'\ AND b_id=\'"+book+"\'", (er,re)=>{
                         if (re.rows.length<=0){
-                            config.quary("INSERT INTO cart(U_ID,ISBN,quantity) VALUES (\'"+user+"\',"+isbn+","+qua+")",(errr,ree)=>{
+                            config.quary("INSERT INTO cart(U_ID,ISBN,quantity) VALUES (\'"+user+"\',"+isbn+",1)",(errr,ree)=>{
                             if (errr)throw errr;
                         });
 
                         }
                         else{
-                            config.quary("UPDATE cart SET quantity = quantity+1 WHERE isbn =\'"+isbn+"'\ AND b_id=\'"+bookId+"\'",(errr,ree)=>{
+                            config.quary("UPDATE cart SET quantity = quantity+1 WHERE isbn =\'"+isbn+"'\ AND u_id=\'"+user+"\'",(errr,ree)=>{
                                 if (errr)throw errr;
                             });
                         }
