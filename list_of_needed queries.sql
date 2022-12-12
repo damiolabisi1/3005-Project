@@ -154,6 +154,11 @@ GROUP BY orders.order_number
     --add to existing book
     Update 
 
+--getamount of books in stock
+SELECT books.number_in_stock
+FROM books
+WHERE ISBN=1
+
 
 
 
