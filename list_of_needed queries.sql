@@ -60,6 +60,17 @@ NATURAL JOIN cart
 NATURAL JOIN books
 WHERE users.U_ID='2'
 
+--add object to caRT
+INSERT INTO cart(U_ID,ISBN,quantity)
+ VALUES
+  ();
+
+--make orders
+INSERT INTO orders(u_id,shipping_address,billing_address)
+VALUES
+    (2,2,2)
+RETURNING u_id
+
 --Getting the orders a user has made
     --getting order infor
     SELECT order_number,tracking_number,shipping_address

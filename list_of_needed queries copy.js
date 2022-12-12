@@ -106,5 +106,7 @@ config.query("SELECT SUM(books.price*books_in_order.quantity) FROM orders NATURA
 
 
 
+    {u_id:3231,books:[{b_id:1,quantity:4}{}{}{}]}
 
+    {u_id=22,{{b_id}{}{}}}
 
