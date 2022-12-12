@@ -60,13 +60,14 @@ router.post('/admin', (request,response) => {
     let username = request.body.Username;
     let password = request.body.Password;
 
-    config.query('SELECT U_id,U_name,U_password,admin_privileges From users Where U_name=\''+username+"\'", (err,res)=>{
+    config.query('SELECT U_id,U_name,U_password,admin_privilege From users Where U_name=\''+username+"\'", (err,res)=>{
         console.log(err,res)
         if(err) throw err;
 
         if(res.rows.length != 0){
             console.log(res);
-            if(res.rows[0].u_password == password && admin_privileges == 'true'){
+            console.log(res.rows);
+            if(res.rows[0].u_password == password && res.rows[0].admin_privilege == true){
                 config.query("SELECT * FROM books ", (error,result)=>{
                     if (error)throw error;
                     let books = result.rows;

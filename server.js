@@ -9,6 +9,10 @@ const loginRouter = require("./login-router.js");
 const searchRouter = require("./search-router.js");
 const signupRouter = require("./signup-router.js");
 
+let user_id=0;
+
+
+
 let db;
 app.locals.db = db;
 app.use(express.json()); // body-parser middleware
