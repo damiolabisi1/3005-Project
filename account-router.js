@@ -8,9 +8,9 @@ const config = require('./config.js');
 app.use(express.json()); // body-parser middleware
 
 router.post('/cart', (request,response) => {
-    let u_id = request.body.u_id
-    let books = request.body.books;
-    
+    let user = request.body.u_id
+    let id = request.body.books;
+
     
 });
 
