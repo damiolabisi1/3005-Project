@@ -188,8 +188,6 @@ function add(event){
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
             let quantity = document.getElementById("cart");
-            // quantity.innerHTML = "";
-            // for(let i = 0;i<data.length;i++){
             quantity.innerHTML += '<p>' +data.b_name + '</p>' +'<br> <br>'
             // }
         }
