@@ -212,22 +212,24 @@ function admin_search(){
     alert("bookname: "+bookname+" author: "+author)
     const body={bookname,author};
 
+    let req = new XMLHttpRequest();
+
     req.onreadystatechange = function () {
         if (this.readyState==4 && this.status==200) {
             let data = JSON.parse(this.responseText);
-            alert("tests");
+            let list = document.getElementById("result");
             admin_book_loader(data);
-            
         }
-    
         else if(this.readyState==4 && this.status==401) {
-            
-            
+            if (this.responseText == "Not found"){
+                document.getElementById("result").innerHTML = '<p> Not found <p>';
+            }
         }
-        };
-        req.open("POST", "/admin", true);
+
+    };
+        req.open("POST", "/search/admin", true);
         req.setRequestHeader("Content-Type", "application/json");
-        req.send(JSON.stringify(Body));
+        req.send(JSON.stringify(body));
     
 
 
@@ -239,6 +241,13 @@ function admin_book_loader(data){
     document.getElementById("book search").innerHTML="";
     console.log(data)
 
+    let list = document.getElementById("book display");
 
+    for(let i = 0;i<data.length;i++){
+        list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
+        '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
+        '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
+        '</p> <button  type="button" onclick="">+</button>'
+    }
 }
 

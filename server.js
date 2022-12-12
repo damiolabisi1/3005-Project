@@ -4,10 +4,10 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 8000;
 let router = express.Router();
+const accountRouter = require("./account-router.js");
 const loginRouter = require("./login-router.js");
 const searchRouter = require("./search-router.js");
 const signupRouter = require("./signup-router.js");
-// const accountRouter = require("./signup-account.js");
 
 let db;
 app.locals.db = db;
@@ -46,6 +46,7 @@ app.use((req,_,next)=> {
 app.use("/login", loginRouter);
 app.use("/search",searchRouter);
 app.use("/signup", signupRouter);
+app.use("/account",accountRouter);
 
 
 config.connect((err)=>{
@@ -54,6 +55,7 @@ config.connect((err)=>{
         return;
     }
     console.log("Database connected")
+
 })
 var username = 'owner'
 // config.query('SELE", (err,res)=>{
@@ -67,25 +69,25 @@ app.listen(PORT, ()=> {
     console.log(`Server listening on http://localhost:${PORT}`)
     });
 
-    config.query("SELECT * FROM users;", (err,res)=>{});
+    config.query("SELECT * FROM users;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM publishers;", (err,res)=>{});
+    config.query("SELECT * FROM publishers;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM orders;", (err,res)=>{});
+    config.query("SELECT * FROM orders;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM books;", (err,res)=>{});
+    config.query("SELECT * FROM books;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM phone_numbers;", (err,res)=>{});
+    config.query("SELECT * FROM phone_numbers;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM cart;", (err,res)=>{});
+    config.query("SELECT * FROM cart;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM books_in_order;", (err,res)=>{});
+    config.query("SELECT * FROM books_in_order;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM address;", (err,res)=>{});
+    config.query("SELECT * FROM address;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM genre;", (err,res)=>{});
+    config.query("SELECT * FROM genre;", (err,res)=>{if(err)throw err;console.log(res);});
 
-    config.query("SELECT * FROM book_genre;", (err,res)=>{});
+    config.query("SELECT * FROM book_genre;", (err,res)=>{if(err)throw err;console.log(res);});
 
 
 
