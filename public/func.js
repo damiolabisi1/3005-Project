@@ -8,7 +8,7 @@ function login(){
 
     req.onreadystatechange = function () {
         if (this.readyState==4 && this.status==200) {
-            alert("Succesfully Logged-In.\n Redirecting to home page.\n");
+            alert("Succesfully Logged-In.\n Redirecting to search page.\n");
             let data = JSON.parse(this.responseText);
             // window.location = "/login";
             let show = document.getElementById("login");
@@ -173,7 +173,21 @@ function adminlogin(){
 }
 
 function add(){
-    
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = function () {
+        if (this.readyState==4 && this.status==200) {
+            let data = JSON.parse(this.responseText);
+        }
+        else if(this.readyState==4 && this.status==401) {
+            if (this.responseText == "false"){
+                // document.getElementById("result").innerHTML = '<p> Not found <p>';
+            }
+        }
+        req.open("POST", "/account/cart", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify(Body));
+    }
 }
 
 // function book_generator(){
