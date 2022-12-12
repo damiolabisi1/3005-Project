@@ -1,3 +1,4 @@
+var user;
 function login(){
     let Username = document.getElementById("Username").value;
 	let Password = document.getElementById("Password").value;
@@ -16,12 +17,12 @@ function login(){
             let hid = document.getElementById("search");
             hid.classList.remove("hidden");
             let list = document.getElementById("result");
-            // list.innerHTML = ";
+            // list.innerHTML = "";
             for(let i = 0;i<data.length-1;i++){
                 list.innerHTML += '<p> ISBN: '+data[i].isbn +'<p> Name: '+data[i].b_name +'<p> Author: '+data[i].author +
                 '</p> Publisher No: '+data[i].publisher_number +'<p> Number of pages: '+data[i].number_of_pages +'<p> Price: '+data[i].price +
                 '<p> Number in stock: '+data[i].number_in_stock +'<p> Sale Percentage: '+data[i].publisher_sale_percentage +'<p> Date Published: '+data[i].date_published +
-                '</p> <button id="cart" type="button" onclick="">Add to Cart</button>'
+                '</p> <button id="cart" type="button" onclick="">Add to Cart</button> <br>'
             }
                 
         }
@@ -169,6 +170,10 @@ function adminlogin(){
         req.open("POST", "login/adminlogin", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(Body));
+}
+
+function add(){
+    
 }
 
 // function book_generator(){
