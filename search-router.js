@@ -86,6 +86,7 @@ router.post('/', (request,response) => {
 router.post( "/admin", (request,response) => {
     let book = request.body.bookname.toLowerCase();
     let author = request.body.author.toLowerCase();
+    console.log(request);
         if(book != '' && author != '')
         config.query("SELECT * FROM books", (err,res)=>{
             if (err) throw err;
@@ -100,7 +101,7 @@ router.post( "/admin", (request,response) => {
         });
                 //by author
                 if(book == '' && author != ''){
-                    config.query("SELECT * FROM books WHERE position(\'"+book+"\' in books.b_name)>0", (err,res)=>{
+                    config.query("SELECT * FROM books WHERE position(\'"+author+"\' in books.author)>0", (err,res)=>{
                         if (err) throw err;
                         if(res.rows.length > 0){
                             console.log(200,JSON.stringify(res.rows))
@@ -114,7 +115,7 @@ router.post( "/admin", (request,response) => {
                     });
                 }
                 if(book != '' && author == ''){
-                    config.query("SELECT * FROM books WHERE position(\'"+author+"\' in books.author)>0", (err,res)=>{
+                    config.query("SELECT * FROM books WHERE position(\'"+book+"\' in books.b_name)>0", (err,res)=>{
                         if (err) throw err;
                         if(res.rows.length > 0){
                             console.log(200,JSON.stringify(res.rows))
